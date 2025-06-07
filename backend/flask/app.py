@@ -4,8 +4,8 @@ import numpy as np
 
 app = Flask(__name__)
 
-sleep_transformer = pickle.load(open('../models/column_transformer_sleep.pkl','rb'))
-lin_model = pickle.load(open('../models/lin_reg_sleep.pkl','rb'))
+sleep_transformer = pickle.load(open('models/column_transformer_sleep.pkl','rb'))
+lin_model = pickle.load(open('models/lin_reg_sleep.pkl','rb'))
 
 @app.route("/")
 def home():
@@ -30,4 +30,4 @@ def sleep_prediction():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True,host="0.0.0.0",port=5000)
