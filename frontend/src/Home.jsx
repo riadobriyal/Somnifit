@@ -1,8 +1,167 @@
 import React from 'react';
 
+const Moon = () => {
+  return (
+    <div className="fixed top-10 right-20 pointer-events-none">
+      <div className="w-32 h-32 bg-gradient-radial from-[#ffd700] to-[#ffb700] rounded-full shadow-[0_0_60px_#ffd700] opacity-90"></div>
+      <div className="w-28 h-28 bg-[#1a237e] rounded-full relative -top-32 -right-3 shadow-inner"></div>
+    </div>
+  );
+};
+
+const StarField = () => {
+  return (
+    <div className="fixed inset-0 overflow-hidden pointer-events-none">
+      {/* Main stars */}
+      {[...Array(80)].map((_, i) => {
+        const size = Math.random() * 3 + 2;
+        return (
+          <div
+            key={i}
+            className="absolute animate-twinkle"
+            style={{
+              width: `${size}px`,
+              height: `${size}px`,
+              top: `${Math.random() * 100}%`,
+              left: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 4}s`,
+              background: 'radial-gradient(circle at center, #fff 0%, rgba(255,255,255,0.3) 50%, transparent 100%)',
+              clipPath: 'polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)',
+              boxShadow: '0 0 8px #fff',
+            }}
+          />
+        )
+      })}
+      {/* Bright golden stars */}
+      {[...Array(12)].map((_, i) => (
+        <div
+          key={`bright-${i}`}
+          className="absolute animate-pulse-slow"
+          style={{
+            width: '4px',
+            height: '4px',
+            top: `${Math.random() * 100}%`,
+            left: `${Math.random() * 100}%`,
+            animationDelay: `${Math.random() * 6}s`,
+            background: 'radial-gradient(circle at center, #ffd700 0%, rgba(255,215,0,0.3) 50%, transparent 100%)',
+            clipPath: 'polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)',
+            boxShadow: '0 0 15px #ffd700',
+          }}
+        />
+      ))}
+    </div>
+  );
+};
+
+const Clouds = () => {
+  return (
+    <div className="fixed inset-0 overflow-hidden pointer-events-none">
+      {/* Large background clouds */}
+      {[...Array(8)].map((_, i) => (
+        <div
+          key={`bg-${i}`}
+          className="absolute animate-float opacity-20"
+          style={{
+            width: `${Math.random() * 600 + 400}px`,
+            height: `${Math.random() * 80 + 80}px`,
+            top: `${Math.random() * 70}%`,
+            left: `${Math.random() * 100}%`,
+            animationDelay: `${Math.random() * 30}s`,
+            background: 'radial-gradient(circle at center, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 60%, transparent 100%)',
+            borderRadius: '50%',
+            filter: 'blur(12px)',
+          }}
+        />
+      ))}
+      
+      {/* Medium clouds with different speeds */}
+      {[...Array(6)].map((_, i) => (
+        <div
+          key={`med-${i}`}
+          className="absolute animate-float-medium opacity-15"
+          style={{
+            width: `${Math.random() * 400 + 300}px`,
+            height: `${Math.random() * 60 + 60}px`,
+            top: `${Math.random() * 50}%`,
+            left: `${Math.random() * 100}%`,
+            animationDelay: `${Math.random() * 20}s`,
+            background: 'radial-gradient(circle at center, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.04) 60%, transparent 100%)',
+            borderRadius: '50%',
+            filter: 'blur(8px)',
+          }}
+        />
+      ))}
+      
+      {/* Small foreground clouds */}
+      {[...Array(4)].map((_, i) => (
+        <div
+          key={`fg-${i}`}
+          className="absolute animate-float-fast opacity-10"
+          style={{
+            width: `${Math.random() * 300 + 200}px`,
+            height: `${Math.random() * 40 + 40}px`,
+            top: `${Math.random() * 40}%`,
+            left: `${Math.random() * 100}%`,
+            animationDelay: `${Math.random() * 15}s`,
+            background: 'radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.03) 60%, transparent 100%)',
+            borderRadius: '50%',
+            filter: 'blur(6px)',
+          }}
+        />
+      ))}
+    </div>
+  );
+};
+
+const AuroraEffect = () => {
+  return (
+    <div className="fixed inset-0 pointer-events-none">
+      <div className="absolute inset-0 opacity-30">
+        <div className="absolute top-0 left-0 w-full h-[70vh] animate-aurora"
+          style={{
+            background: 'linear-gradient(180deg, transparent 0%, rgba(88, 28, 135, 0.2) 25%, rgba(37, 99, 235, 0.2) 50%, rgba(147, 51, 234, 0.1) 75%, transparent 100%)',
+            filter: 'blur(40px)',
+          }}
+        />
+      </div>
+    </div>
+  );
+};
+
+const NightEffects = () => {
+  return (
+    <div className="fixed inset-0 pointer-events-none">
+      <AuroraEffect />
+      {/* Shooting stars */}
+      {[...Array(2)].map((_, i) => (
+        <div
+          key={`shooting-star-${i}`}
+          className="absolute animate-shooting-star"
+          style={{
+            width: '3px',
+            height: '120px',
+            top: `${Math.random() * 40}%`,
+            left: `${Math.random() * 100}%`,
+            background: 'linear-gradient(to bottom, transparent, #fff, #ffd700, transparent)',
+            opacity: 0.8,
+            animationDelay: `${Math.random() * 8}s`,
+            filter: 'blur(0.5px)',
+            boxShadow: '0 0 20px #ffd700',
+          }}
+        />
+      ))}
+    </div>
+  );
+};
+
 const Home = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#1a237e] to-[#0d1b3e]">
+    <div className="min-h-screen bg-gradient-to-b from-[#1a237e] via-[#152054] to-[#0d1b3e] relative overflow-hidden">
+      <StarField />
+      <Moon />
+      <Clouds />
+      <NightEffects />
+
       <nav className="p-6 flex justify-between items-center">
         <h1 className="text-3xl font-bold text-[#ffd700]">SomniFit</h1>
         <div className="flex gap-6">
