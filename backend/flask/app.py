@@ -4,8 +4,10 @@ import numpy as np
 
 app = Flask(__name__)
 
-sleep_transformer = pickle.load(open('models/column_transformer_sleep.pkl','rb'))
-lin_model = pickle.load(open('models/lin_reg_sleep.pkl','rb'))
+#sleep_transformer = pickle.load(open('../models/column_transformer_sleep.pkl','rb'))
+#lin_model = pickle.load(open('../models/lin_reg_sleep.pkl','rb'))
+activity_transformer=pickle.load(open('../models/column_transformer_activity.pkl','rb'))
+log_model=pickle.load(open('../models/log_reg_activity.pkl','rb'))
 
 @app.route("/")
 def home():
@@ -27,6 +29,24 @@ def sleep_prediction():
     prediction = lin_model.predict(sleep_transformer.transform(input_data))
 
     return jsonify({'sleep_efficiency': float(prediction)})
+
+
+@app.route("/activity_predictor",methods=['POST'])
+def activity_prediction():
+    data = request.get_json()
+
+    weight = float(data.get('weight'))
+    height = float(data.get('height'))
+    BMI = float(data.get('BMI'))
+    age = float(data.get('age'))
+    gender = data.get('gender')
+    BMI_Case = data.get('BMI_Case')
+    
+
+    input_data = np.array([[weight,height,BMI,gender,age,BMI_Case]])
+    prediction = log_model.predict(activity_transformer.transform(input_data))
+
+    return jsonify({'Exercise Reccomendation Plan': int(prediction)})
 
 
 if __name__ == "__main__":
