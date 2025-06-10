@@ -1,10 +1,50 @@
 import React from 'react';
+import nightCamp from './assets/night-camp.jpg';
+
+// Add error boundary for image loading
+const BackgroundImage = () => {
+  return (
+    <>
+      <div 
+        className="fixed inset-0 z-0 bg-[#1a237e]" // Fallback background
+      />
+      <div 
+        className="fixed inset-0 z-0"
+        style={{
+          backgroundImage: `url(${nightCamp})`,
+          backgroundSize: '150%', // Increased from 120% to show more scene
+          backgroundPosition: 'center 75%', // Adjusted from 85% to show more sky
+          backgroundRepeat: 'no-repeat',
+          transform: 'translateY(-5%)', // Move image up slightly
+        }}
+      />
+      {/* Additional gradient overlay for smoother sky transition */}
+      <div 
+        className="fixed inset-0 z-1 bg-gradient-to-b from-[#1a237e]/30 to-transparent"
+      />
+    </>
+  );
+};
 
 const Moon = () => {
   return (
-    <div className="fixed top-10 right-20 pointer-events-none">
-      <div className="w-32 h-32 bg-gradient-radial from-[#ffd700] to-[#ffb700] rounded-full shadow-[0_0_60px_#ffd700] opacity-90"></div>
-      <div className="w-28 h-28 bg-[#1a237e] rounded-full relative -top-32 -right-3 shadow-inner"></div>
+    <div className="fixed top-20 right-20 pointer-events-none animate-moon-glow">
+      {/* Main moon body */}
+      <div 
+        className="w-32 h-32 rounded-full opacity-90"
+        style={{
+          background: 'radial-gradient(circle at 30% 30%, #F5F5F5, #C0C0C0 40%, #808080 90%)',
+          boxShadow: '0 0 60px rgba(192, 192, 192, 0.6), inset 0 0 40px rgba(255, 255, 255, 0.2)'
+        }}
+      />
+      {/* Moon shadow/crater */}
+      <div 
+        className="w-28 h-28 rounded-full relative -top-32 -right-3"
+        style={{
+          background: 'radial-gradient(circle at 70% 70%, #1a237e, rgba(26, 35, 126, 0.8))',
+          boxShadow: 'inset -5px -5px 25px rgba(0, 0, 0, 0.3)'
+        }}
+      />
     </div>
   );
 };
@@ -156,59 +196,76 @@ const NightEffects = () => {
 
 const Home = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#1a237e] via-[#152054] to-[#0d1b3e] relative overflow-hidden">
-      <StarField />
-      <Moon />
-      <Clouds />
-      <NightEffects />
+    <div className="min-h-screen relative overflow-hidden">
+      {/* Background Image */}
+      <div 
+        className="fixed inset-0 z-0"
+        style={{
+          backgroundImage: `url(${nightCamp})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+        }}
+      />
+      
+      {/* Overlay for better text readability */}
+      <div className="fixed inset-0 z-10 bg-[#1a237e]/40"></div>
 
-      <nav className="p-6 flex justify-between items-center">
-        <h1 className="text-3xl font-bold text-[#ffd700]">SomniFit</h1>
-        <div className="flex gap-6">
-          <button className="text-[#C0C0C0] hover:text-[#ffd700] transition-colors">Sign In</button>
-          <button className="bg-[#ffd700] text-[#1a237e] px-4 py-2 rounded-lg hover:bg-[#C0C0C0] transition-colors">
-            Get Started
-          </button>
-        </div>
-      </nav>
+      {/* Content */}
+      <div className="relative z-20">
+        <StarField />
+        <Moon />
+        <Clouds />
+        <NightEffects />
 
-      <main className="container mx-auto px-6 py-20">
-        <div className="flex flex-col items-center text-center gap-8">
-          <h2 className="text-5xl font-bold text-[#C0C0C0] leading-tight">
-            Transform Your Sleep,<br />
-            <span className="text-[#ffd700]">Enhance Your Life</span>
-          </h2>
-          
-          <p className="text-[#C0C0C0] max-w-2xl text-lg">
-            Track, analyze, and improve your sleep patterns with advanced AI-powered insights. 
-            Wake up refreshed and ready to conquer your day.
-          </p>
-
-          <div className="flex gap-4 mt-8">
-            <button className="bg-[#ffd700] text-[#1a237e] px-8 py-3 rounded-lg hover:bg-[#C0C0C0] transition-colors font-semibold">
-              Start Free Trial
-            </button>
-            <button className="border border-[#C0C0C0] text-[#C0C0C0] px-8 py-3 rounded-lg hover:border-[#ffd700] hover:text-[#ffd700] transition-colors">
-              Learn More
+        <nav className="p-6 flex justify-between items-center">
+          <h1 className="text-3xl font-bold text-[#ffd700]">SomniFit</h1>
+          <div className="flex gap-6">
+            <button className="text-[#C0C0C0] hover:text-[#ffd700] transition-colors">Sign In</button>
+            <button className="bg-[#ffd700] text-[#1a237e] px-4 py-2 rounded-lg hover:bg-[#C0C0C0] transition-colors">
+              Get Started
             </button>
           </div>
-        </div>
+        </nav>
 
-        <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="bg-[#0d1b3e]/50 p-6 rounded-xl border border-[#C0C0C0]/20">
-            <div className="text-[#ffd700] text-xl mb-4">Sleep Analytics</div>
-            <p className="text-[#C0C0C0]">Advanced sleep tracking and detailed insights into your sleep patterns</p>
+        <main className="container mx-auto px-6 py-20">
+          <div className="flex flex-col items-center text-center gap-8">
+            <h2 className="text-5xl font-bold text-[#C0C0C0] leading-tight">
+              Transform Your Sleep,<br />
+              <span className="text-[#ffd700]">Enhance Your Life</span>
+            </h2>
+            
+            <p className="text-[#C0C0C0] max-w-2xl text-lg">
+              Track, analyze, and improve your sleep patterns with advanced AI-powered insights. 
+              Wake up refreshed and ready to conquer your day.
+            </p>
+
+            <div className="flex gap-4 mt-8">
+              <button className="bg-[#ffd700] text-[#1a237e] px-8 py-3 rounded-lg hover:bg-[#C0C0C0] transition-colors font-semibold">
+                Start Free Trial
+              </button>
+              <button className="border border-[#C0C0C0] text-[#C0C0C0] px-8 py-3 rounded-lg hover:border-[#ffd700] hover:text-[#ffd700] transition-colors">
+                Learn More
+              </button>
+            </div>
           </div>
-          <div className="bg-[#0d1b3e]/50 p-6 rounded-xl border border-[#C0C0C0]/20">
-            <div className="text-[#ffd700] text-xl mb-4">Smart Alarm</div>
-            <p className="text-[#C0C0C0]">Wake up naturally during your lightest sleep phase</p>
+
+          <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-[#0d1b3e]/50 p-6 rounded-xl border border-[#C0C0C0]/20">
+              <div className="text-[#ffd700] text-xl mb-4">Sleep Analytics</div>
+              <p className="text-[#C0C0C0]">Advanced sleep tracking and detailed insights into your sleep patterns</p>
+            </div>
+            <div className="bg-[#0d1b3e]/50 p-6 rounded-xl border border-[#C0C0C0]/20">
+              <div className="text-[#ffd700] text-xl mb-4">Smart Alarm</div>
+              <p className="text-[#C0C0C0]">Wake up naturally during your lightest sleep phase</p>
+            </div>
+            <div className="bg-[#0d1b3e]/50 p-6 rounded-xl border border-[#C0C0C0]/20">
+              <div className="text-[#ffd700] text-xl mb-4">Personalized Tips</div>
+              <p className="text-[#C0C0C0]">Get customized recommendations to improve your sleep quality</p>
+            </div>
           </div>
-          <div className="bg-[#0d1b3e]/50 p-6 rounded-xl border border-[#C0C0C0]/20">
-            <div className="text-[#ffd700] text-xl mb-4">Personalized Tips</div>
-            <p className="text-[#C0C0C0]">Get customized recommendations to improve your sleep quality</p>
-          </div>
-        </div>
-      </main>
+        </main>
+      </div>
     </div>
   );
 };
