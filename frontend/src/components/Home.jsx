@@ -1,4 +1,5 @@
 import React from 'react';
+import {useNavigate} from 'react-router-dom'
 
 const Moon = () => {
   return (
@@ -173,6 +174,9 @@ const NightEffects = () => {
 };
 
 const Home = () => {
+  
+  const nav = useNavigate()
+  
   return (
     <div className="min-h-screen relative overflow-hidden">
       {/* Background Image */}
@@ -208,16 +212,16 @@ const Home = () => {
             </h2>
             
             <p className="text-[#C0C0C0] max-w-2xl text-lg">
-              Track, analyze, and improve your sleep patterns with advanced AI-powered insights. 
+              Track, analyze, and improve your sleep and fitness patterns with advanced AI-powered suggestions. 
               Wake up refreshed and ready to conquer your day.
             </p>
 
             <div className="flex gap-4 mt-8">
-              <button className="bg-[#ffd700] text-[#1a237e] px-8 py-3 rounded-lg hover:bg-[#C0C0C0] transition-colors font-semibold">
-                Start Free Trial
+              <button className="bg-[#ffd700] text-[#1a237e] px-8 py-3 rounded-lg hover:bg-[#C0C0C0] transition-colors font-semibold" onClick={() => nav('sleep-tracker')}>
+                Sleep Tracking
               </button>
-              <button className="border border-[#C0C0C0] text-[#C0C0C0] px-8 py-3 rounded-lg hover:border-[#ffd700] hover:text-[#ffd700] transition-colors">
-                Learn More
+              <button className="border border-[#C0C0C0] text-[#C0C0C0] px-8 py-3 rounded-lg hover:border-[#ffd700] hover:text-[#ffd700] transition-colors" onClick={() => nav('fitness-tracker')}>
+                Fitness Tracker
               </button>
             </div>
           </div>
@@ -228,12 +232,12 @@ const Home = () => {
               <p className="text-[#C0C0C0]">Advanced sleep tracking and detailed insights into your sleep patterns</p>
             </div>
             <div className="bg-[#0d1b3e]/50 p-6 rounded-xl border border-[#C0C0C0]/20">
-              <div className="text-[#ffd700] text-xl mb-4">Smart Alarm</div>
-              <p className="text-[#C0C0C0]">Wake up naturally during your lightest sleep phase</p>
+              <div className="text-[#ffd700] text-xl mb-4">Fitness Tracker</div>
+              <p className="text-[#C0C0C0]">Get impactful AI specialized exercise plans with our BMI calculator</p>
             </div>
             <div className="bg-[#0d1b3e]/50 p-6 rounded-xl border border-[#C0C0C0]/20">
               <div className="text-[#ffd700] text-xl mb-4">Personalized Tips</div>
-              <p className="text-[#C0C0C0]">Get customized recommendations to improve your sleep quality</p>
+              <p className="text-[#C0C0C0]">Get customized recommendations to improve your sleep and fitness quality</p>
             </div>
           </div>
         </main>
