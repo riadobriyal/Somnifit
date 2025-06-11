@@ -1,5 +1,5 @@
-import MainPage from '../mainpage'
-import Home from './Home'  // Fix the import path
+import MainPage from './components/mainpage'
+import Home from './components/Home'  // Fix the import path
 import './App.css'
 
 function App() {

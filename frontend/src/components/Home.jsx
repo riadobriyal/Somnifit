@@ -1,50 +1,26 @@
 import React from 'react';
-import nightCamp from './assets/night-camp.jpg';
-
-// Add error boundary for image loading
-const BackgroundImage = () => {
-  return (
-    <>
-      <div 
-        className="fixed inset-0 z-0 bg-[#1a237e]" // Fallback background
-      />
-      <div 
-        className="fixed inset-0 z-0"
-        style={{
-          backgroundImage: `url(${nightCamp})`,
-          backgroundSize: '150%', // Increased from 120% to show more scene
-          backgroundPosition: 'center 75%', // Adjusted from 85% to show more sky
-          backgroundRepeat: 'no-repeat',
-          transform: 'translateY(-5%)', // Move image up slightly
-        }}
-      />
-      {/* Additional gradient overlay for smoother sky transition */}
-      <div 
-        className="fixed inset-0 z-1 bg-gradient-to-b from-[#1a237e]/30 to-transparent"
-      />
-    </>
-  );
-};
 
 const Moon = () => {
   return (
-    <div className="fixed top-20 right-20 pointer-events-none animate-moon-glow">
+    <div className="fixed top-8 right-12 pointer-events-none animate-moon-glow">
       {/* Main moon body */}
       <div 
-        className="w-32 h-32 rounded-full opacity-90"
+        className="w-24 h-24 rounded-full opacity-90 relative"
         style={{
           background: 'radial-gradient(circle at 30% 30%, #F5F5F5, #C0C0C0 40%, #808080 90%)',
           boxShadow: '0 0 60px rgba(192, 192, 192, 0.6), inset 0 0 40px rgba(255, 255, 255, 0.2)'
         }}
-      />
-      {/* Moon shadow/crater */}
-      <div 
-        className="w-28 h-28 rounded-full relative -top-32 -right-3"
-        style={{
-          background: 'radial-gradient(circle at 70% 70%, #1a237e, rgba(26, 35, 126, 0.8))',
-          boxShadow: 'inset -5px -5px 25px rgba(0, 0, 0, 0.3)'
-        }}
-      />
+      >
+        {/* Overlay circle to create crescent effect */}
+        <div 
+          className="absolute w-23 h-22 rounded-full"
+          style={{
+            background: '#393679',
+            top: '0',
+            left: '6px',
+          }}
+        />
+      </div>
     </div>
   );
 };
@@ -172,21 +148,23 @@ const NightEffects = () => {
   return (
     <div className="fixed inset-0 pointer-events-none">
       <AuroraEffect />
-      {/* Shooting stars */}
-      {[...Array(2)].map((_, i) => (
+      {/* Shooting stars - raining from top right to bottom left */}
+      {[...Array(5)].map((_, i) => (
         <div
           key={`shooting-star-${i}`}
           className="absolute animate-shooting-star"
           style={{
             width: '3px',
             height: '120px',
-            top: `${Math.random() * 40}%`,
-            left: `${Math.random() * 100}%`,
-            background: 'linear-gradient(to bottom, transparent, #fff, #ffd700, transparent)',
+            top: `${(Math.random() * 8) + (Math.random() * 6)}%`,
+            right: `${(i * 12) + (Math.random() * 8)}%`,
+            background: 'linear-gradient(135deg, transparent, #fff, #ffd700, transparent)',
             opacity: 0.8,
-            animationDelay: `${Math.random() * 8}s`,
+            animationDelay: `${i * 2 + (Math.random() * 3)}s`,
             filter: 'blur(0.5px)',
             boxShadow: '0 0 20px #ffd700',
+            transform: 'rotate(45deg)',
+            transformOrigin: 'center',
           }}
         />
       ))}
@@ -201,9 +179,9 @@ const Home = () => {
       <div 
         className="fixed inset-0 z-0"
         style={{
-          backgroundImage: `url(${nightCamp})`,
+          backgroundImage: `url(/home-bg.jpg)`,
           backgroundSize: 'cover',
-          backgroundPosition: 'center',
+          backgroundPosition: 'centre',
           backgroundRepeat: 'no-repeat',
         }}
       />
@@ -220,12 +198,6 @@ const Home = () => {
 
         <nav className="p-6 flex justify-between items-center">
           <h1 className="text-3xl font-bold text-[#ffd700]">SomniFit</h1>
-          <div className="flex gap-6">
-            <button className="text-[#C0C0C0] hover:text-[#ffd700] transition-colors">Sign In</button>
-            <button className="bg-[#ffd700] text-[#1a237e] px-4 py-2 rounded-lg hover:bg-[#C0C0C0] transition-colors">
-              Get Started
-            </button>
-          </div>
         </nav>
 
         <main className="container mx-auto px-6 py-20">
