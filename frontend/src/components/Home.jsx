@@ -246,4 +246,5 @@ const Home = () => {
   );
 };
 
+export {StarField}
 export default Home;
