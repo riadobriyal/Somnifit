@@ -36,10 +36,10 @@ function SleepTracker() {
             {/* <div className="w-full h-48 bg-gradient-to-br from-purple-400 to-purple-600 rounded-lg mb-6 flex items-center justify-center">
               <span className="text-6xl">🌙</span>
             </div> */}
-            <img src='https://plus.unsplash.com/premium_photo-1749760305646-60673cae2c46?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'/>
+            <img src='https://cdn.dribbble.com/userupload/23692188/file/original-1c34a9892c461bf6c0718f3a92254c71.gif'/>
             <h3 className="text-2xl font-bold text-black mb-4">Sleep Tracking</h3>
             <p className="text-black-100">
-              Monitor your sleep patterns, duration, and quality with advanced analytics to understand your rest better.
+              Start understanding your sleep like never before. With our AI-powered sleep tracking, you don’t just see how long you slept — you learn how well you slept. Our system monitors your sleep cycles, patterns, and disturbances to give you a clear, personalized overview of your nightly rest. No more guessing whether you slept okay — you’ll know exactly what’s happening when you close your eyes.
             </p>
           </div>
 
@@ -50,7 +50,7 @@ function SleepTracker() {
             </div>
             <h3 className="text-2xl font-bold text-black mb-4">Sleep Analytics</h3>
             <p className="text-black-100">
-              Get detailed insights and trends about your sleep habits with AI-powered analysis and recommendations.
+              What if your sleep could speak to you? With our machine learning-based analytics, it can. We dive deep into your sleep data to uncover trends, patterns, and habits that are silently affecting your rest. Whether it's that late-night screen time or irregular bedtime, our intelligent system connects the dots and helps you make sense of it all — so you can take back control of your sleep, one insight at a time.
             </p>
           </div>
 
@@ -61,7 +61,7 @@ function SleepTracker() {
             </div>
             <h3 className="text-2xl font-bold text-black mb-4">Smart Tips</h3>
             <p className="text-black-100">
-              Receive personalized recommendations and tips to improve your sleep quality based on your unique patterns.Receive personalized recommendations and tips to improve your sleep quality based on your unique patterns.Receive personalized recommendations and tips to improve your sleep quality based on your unique patterns.Receive personalized recommendations and tips to improve your sleep quality based on your unique patterns.Receive personalized recommendations and tips to improve your sleep quality based on your unique patterns.Receive personalized recommendations and tips to improve your sleep quality based on your unique patterns.Receive personalized recommendations and tips to improve your sleep quality based on your unique patterns.
+              Not all sleep advice is created equal — and that’s why we don’t give generic tips. Our AI learns from your unique sleep behavior and gives you customized suggestions to help you sleep better every night. From bedtime routines to small lifestyle changes, our smart tips evolve with you. It’s like having your own personal sleep coach, always ready with guidance that actually works for you.
             </p>
           </div>
         </div>
