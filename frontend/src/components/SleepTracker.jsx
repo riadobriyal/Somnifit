@@ -46,7 +46,7 @@ function SleepTracker() {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full bg-gradient-to-b from-[#191970] to-[#191970]">
         {/* Card 1 */}
-        <div className="bg-white backdrop-blur-sm rounded-xl p-8 border border-white/20 hover:bg-white/15 transition-all">
+        <div className="bg-blue-300 backdrop-blur-sm rounded-xl p-8 border border-white/20 hover:bg-blue-400 transition-all">
           {/* <div className="w-full h-48 bg-gradient-to-br from-purple-400 to-purple-600 rounded-lg mb-6 flex items-center justify-center">
               <span className="text-6xl">🌙</span>
             </div> */}
@@ -58,7 +58,7 @@ function SleepTracker() {
           </div>
 
           {/* Card 2 */}
-          <div className="bg-white/10 backdrop-blur-sm rounded-xl p-8 border border-white/20 hover:bg-white/15 transition-all">
+          <div className="bg-blue-300 backdrop-blur-sm rounded-xl p-8 border border-white/20 hover:bg-blue-400 transition-all">
             <div className="w-full h-48 bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg mb-6 flex items-center justify-center">
               <span className="text-6xl">📊</span>
             </div>
@@ -69,7 +69,7 @@ function SleepTracker() {
           </div>
 
           {/* Card 3 */}
-          <div className="bg-white/10 backdrop-blur-sm rounded-xl p-8 border border-white/20 hover:bg-white/15 transition-all">
+          <div className="bg-blue-300 backdrop-blur-sm rounded-xl p-8 border border-white/20 hover:bg-blue-400 transition-all">
             <div className="w-full h-48 bg-gradient-to-br from-indigo-400 to-indigo-600 rounded-lg mb-6 flex items-center justify-center">
               <span className="text-6xl">💡</span>
             </div>
