@@ -13,15 +13,15 @@ function FitnessTracker() {
   });
 
   return (
-    <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-[#D44C2E] via-[#FF9F45] to-[#F7E987]">
-      {/* Ambient glow effect - butter yellow */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(247,233,135,0.2),transparent_80%)]" />
+    <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-[#000B18] via-[#004E98] to-[#3A6EA5]">
+      {/* Ambient glow effect - blue */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(58,110,165,0.2),transparent_80%)]" />
 
       <div className="relative z-20">
-        <nav className="p-6 flex justify-between items-center backdrop-blur-sm border-b border-[#F7E987]/10">
+        <nav className="p-6 flex justify-between items-center backdrop-blur-sm border-b border-[#C6E0FF]/10">
           <h1 
             onClick={() => navigate('/')} 
-            className="text-3xl font-bold bg-gradient-to-r from-[#F7E987] to-white bg-clip-text text-transparent cursor-pointer"
+            className="text-3xl font-bold bg-gradient-to-r from-[#C6E0FF] to-white bg-clip-text text-transparent cursor-pointer"
           >
             SomniFit
           </h1>
@@ -30,15 +30,16 @@ function FitnessTracker() {
         <main className="container mx-auto px-4 py-16">
           <div className="max-w-4xl mx-auto space-y-12">
             <div className="text-center space-y-4">
-              <h2 className="text-5xl font-bold text-[#F7E987]">
+              <h2 className="text-5xl font-bold text-[#C6E0FF]">
                 Track Your Fitness
               </h2>
-              <p className="text-lg text-white/90">
+              <p className="text-lg text-[#C6E0FF]/80">
                 Monitor your exercise patterns for better sleep quality
               </p>
             </div>
 
-            <form className="bg-white/5 backdrop-blur-md p-8 rounded-3xl border border-[#F7E987]/20 shadow-xl">
+            {/* Update form background and borders */}
+            <form className="bg-white/5 backdrop-blur-md p-8 rounded-3xl border border-[#C6E0FF]/20 shadow-xl">
               {/* Update form elements */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {/* Personal Info Section */}
@@ -66,8 +67,8 @@ function FitnessTracker() {
                             onClick={() => setFormData({...formData, gender})}
                             className={`px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 ${
                               formData.gender === gender
-                                ? 'bg-[#FF9F45] text-white shadow-lg shadow-[#FF9F45]/30'
-                                : 'bg-[#D44C2E]/10 text-[#F7E987] hover:bg-[#D44C2E]/20'
+                                ? 'bg-[#3A6EA5] text-white shadow-lg shadow-[#3A6EA5]/30'
+                                : 'bg-[#000B18]/30 text-[#C6E0FF] hover:bg-[#004E98]/40'
                             }`}
                           >
                             {gender}
@@ -108,7 +109,7 @@ function FitnessTracker() {
 
               <button
                 type="submit"
-                className="w-full mt-10 bg-gradient-to-r from-[#FF9F45] to-[#D44C2E] text-white font-medium py-4 px-8 rounded-xl hover:from-[#FF9838] hover:to-[#C73F20] transition-all duration-200 shadow-lg"
+                className="w-full mt-10 bg-gradient-to-r from-[#004E98] to-[#3A6EA5] text-white font-medium py-4 px-8 rounded-xl hover:from-[#003E78] hover:to-[#2A5E95] transition-all duration-200 shadow-lg"
               >
                 Analyze Exercise Impact
               </button>
