@@ -112,15 +112,19 @@ function SleepTracker() {
             </p>
           </div>
 
-          <form className="bg-white/5 backdrop-blur-md p-8 rounded-3xl border border-[#C6E0FF]/20 shadow-xl">
+          <div className="relative">
+            {/* Blue glow effect */}
+            <div className="absolute inset-0 bg-[#4A90E2]/20 blur-xl rounded-3xl"></div>
+            
+            <form className="relative bg-[#4A90E2]/10 backdrop-blur-xl p-8 rounded-3xl border border-[#86C1FF]/30 shadow-lg shadow-[#4A90E2]/20">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {/* Personal Info Section */}
               <div className="space-y-6">
-                <h3 className="text-2xl font-semibold text-[#FFE4B5]">Personal Details</h3>
+                <h3 className="text-2xl font-semibold text-black">Personal Details</h3>
                 <div className="space-y-4">
                   {/* Age Input */}
                   <div>
-                    <label className="block text-[#F5DEB3] text-sm font-medium mb-2">Age</label>
+                    <label className="block text-black text-sm font-medium mb-2">Age</label>
                     <input
                       type="number"
                       value={formData.age}
@@ -130,7 +134,7 @@ function SleepTracker() {
                   </div>
                   {/* Gender Buttons */}
                   <div>
-                    <label className="block text-[#F5DEB3] text-sm font-medium mb-3">Gender</label>
+                    <label className="block text-black text-sm font-medium mb-3">Gender</label>
                     <div className="grid grid-cols-2 gap-3">
                       {['Male', 'Female'].map((gender) => (
                         <button
@@ -153,11 +157,11 @@ function SleepTracker() {
 
               {/* Sleep Metrics Section */}
               <div className="space-y-6">
-                <h3 className="text-2xl font-semibold text-[#FFE4B5]">Sleep Data</h3>
+                <h3 className="text-2xl font-semibold text-black">Sleep Data</h3>
                 <div className="space-y-4">
                   {/* Bed Time */}
                   <div>
-                    <label className="block text-[#F5DEB3] text-sm font-medium mb-2">Bed Time</label>
+                    <label className="block text-black text-sm font-medium mb-2">Bed Time</label>
                     <input
                       type="time"
                       value={formData.bedTime}
@@ -167,7 +171,7 @@ function SleepTracker() {
                   </div>
                   {/* Wakeup Time */}
                   <div>
-                    <label className="block text-[#F5DEB3] text-sm font-medium mb-2">Wakeup Time</label>
+                    <label className="block text-black text-sm font-medium mb-2">Wakeup Time</label>
                     <input
                       type="time"
                       value={formData.wakeupTime}
@@ -180,11 +184,11 @@ function SleepTracker() {
 
               {/* Sleep Duration Section */}
               <div className="space-y-6">
-                <h3 className="text-2xl font-semibold text-[#FFE4B5]">Sleep Duration</h3>
+                <h3 className="text-2xl font-semibold text-black">Sleep Duration</h3>
                 <div className="space-y-4">
                   {/* Total Sleep */}
                   <div>
-                    <label className="block text-[#F5DEB3] text-sm font-medium mb-2">Total Sleep Duration (hours)</label>
+                    <label className="block text-black text-sm font-medium mb-2">Total Sleep Duration (hours)</label>
                     <input
                       type="number"
                       step="0.1"
@@ -195,7 +199,7 @@ function SleepTracker() {
                   </div>
                   {/* Light Sleep */}
                   <div>
-                    <label className="block text-[#F5DEB3] text-sm font-medium mb-2">Light Sleep (hours)</label>
+                    <label className="block text-black text-sm font-medium mb-2">Light Sleep (hours)</label>
                     <input
                       type="number"
                       step="0.1"
@@ -209,11 +213,11 @@ function SleepTracker() {
 
               {/* Sleep Quality Section */}
               <div className="space-y-6">
-                <h3 className="text-2xl font-semibold text-[#FFE4B5]">Sleep Quality</h3>
+                <h3 className="text-2xl font-semibold text-black">Sleep Quality</h3>
                 <div className="space-y-4">
                   {/* Deep Sleep */}
                   <div>
-                    <label className="block text-[#F5DEB3] text-sm font-medium mb-2">Deep Sleep (hours)</label>
+                    <label className="block text-black text-sm font-medium mb-2">Deep Sleep (hours)</label>
                     <input
                       type="number"
                       step="0.1"
@@ -224,7 +228,7 @@ function SleepTracker() {
                   </div>
                   {/* REM Sleep */}
                   <div>
-                    <label className="block text-[#F5DEB3] text-sm font-medium mb-2">REM Sleep (hours)</label>
+                    <label className="block text-black text-sm font-medium mb-2">REM Sleep (hours)</label>
                     <input
                       type="number"
                       step="0.1"
@@ -244,6 +248,7 @@ function SleepTracker() {
               Analyze Sleep Efficiency
             </button>
           </form>
+          </div>
         </div>
       </main>
     </>
