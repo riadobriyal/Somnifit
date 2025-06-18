@@ -27,6 +27,7 @@ function SleepTracker() {
   return (
     <>
       <div className="min-h-screen w-full flex flex-col bg-gradient-to-b from-purple-700 to-[#191970]">
+        {/* Top left logo */}
         <div className="p-6">
           <Link
             to="/"
@@ -112,6 +113,7 @@ function SleepTracker() {
 
           <form className="bg-white/5 backdrop-blur-md p-8 rounded-3xl border border-[#C6E0FF]/20 shadow-xl">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {/* Personal Info Section */}
               <div className="space-y-6">
                 <h3 className="text-2xl font-semibold text-[#FFE4B5]">Personal Details</h3>
                 <div className="space-y-4">
