@@ -27,7 +27,6 @@ function SleepTracker() {
   return (
     <>
       <div className="min-h-screen w-full flex flex-col bg-gradient-to-b from-purple-700 to-[#191970]">
-        {/* Top left logo */}
         <div className="p-6">
           <Link
             to="/"
@@ -111,19 +110,14 @@ function SleepTracker() {
             </p>
           </div>
 
-          <div className="relative">
-            {/* Blue glow effect */}
-            <div className="absolute inset-0 bg-[#4A90E2]/20 blur-xl rounded-3xl"></div>
-            
-            <form className="relative bg-[#4A90E2]/10 backdrop-blur-xl p-8 rounded-3xl border border-[#86C1FF]/30 shadow-lg shadow-[#4A90E2]/20">
+          <form className="bg-white/5 backdrop-blur-md p-8 rounded-3xl border border-[#C6E0FF]/20 shadow-xl">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {/* Personal Info Section */}
               <div className="space-y-6">
-                <h3 className="text-2xl font-semibold text-black">Personal Details</h3>
+                <h3 className="text-2xl font-semibold text-white">Personal Details</h3>
                 <div className="space-y-4">
                   {/* Age Input */}
                   <div>
-                    <label className="block text-black text-sm font-medium mb-2">Age</label>
+                    <label className="block text-white text-sm font-medium mb-2">Age</label>
                     <input
                       type="number"
                       value={formData.age}
@@ -133,7 +127,7 @@ function SleepTracker() {
                   </div>
                   {/* Gender Buttons */}
                   <div>
-                    <label className="block text-black text-sm font-medium mb-3">Gender</label>
+                    <label className="block text-white text-sm font-medium mb-3">Gender</label>
                     <div className="grid grid-cols-2 gap-3">
                       {['Male', 'Female'].map((gender) => (
                         <button
@@ -156,11 +150,11 @@ function SleepTracker() {
 
               {/* Sleep Metrics Section */}
               <div className="space-y-6">
-                <h3 className="text-2xl font-semibold text-black">Sleep Data</h3>
+                <h3 className="text-2xl font-semibold text-white">Sleep Data</h3>
                 <div className="space-y-4">
                   {/* Bed Time */}
                   <div>
-                    <label className="block text-black text-sm font-medium mb-2">Bed Time</label>
+                    <label className="block text-white text-sm font-medium mb-2">Bed Time</label>
                     <input
                       type="time"
                       value={formData.bedTime}
@@ -170,7 +164,7 @@ function SleepTracker() {
                   </div>
                   {/* Wakeup Time */}
                   <div>
-                    <label className="block text-black text-sm font-medium mb-2">Wakeup Time</label>
+                    <label className="block text-white text-sm font-medium mb-2">Wakeup Time</label>
                     <input
                       type="time"
                       value={formData.wakeupTime}
@@ -180,14 +174,12 @@ function SleepTracker() {
                   </div>
                 </div>
               </div>
-
-              {/* Sleep Duration Section */}
-              <div className="space-y-6">
-                <h3 className="text-2xl font-semibold text-black">Sleep Duration</h3>
+              {/* Sleep Quality Section */}
+              <div className="space-y-6 md:col-span-2">
+                <h3 className="text-2xl font-semibold text-center text-white">Sleep Quality</h3>
                 <div className="space-y-4">
-                  {/* Total Sleep */}
-                  <div>
-                    <label className="block text-black text-sm font-medium mb-2">Total Sleep Duration (hours)</label>
+                  <div className="max-w-md mx-auto">
+                    <label className="block text-white text-sm font-medium mb-2">Total Sleep Duration (hours)</label>
                     <input
                       type="number"
                       step="0.1"
@@ -196,45 +188,57 @@ function SleepTracker() {
                       className="w-full bg-[#D44C2E]/10 border border-[#F7E987]/30 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-[#F7E987] focus:border-transparent transition-all"
                     />
                   </div>
-                  {/* Light Sleep */}
-                  <div>
-                    <label className="block text-black text-sm font-medium mb-2">Light Sleep (hours)</label>
-                    <input
-                      type="number"
-                      step="0.1"
-                      value={formData.lightSleep}
-                      onChange={(e) => setFormData({...formData, lightSleep: e.target.value})}
-                      className="w-full bg-[#D44C2E]/10 border border-[#F7E987]/30 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-[#F7E987] focus:border-transparent transition-all"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              {/* Sleep Quality Section */}
-              <div className="space-y-6">
-                <h3 className="text-2xl font-semibold text-black">Sleep Quality</h3>
-                <div className="space-y-4">
-                  {/* Deep Sleep */}
-                  <div>
-                    <label className="block text-black text-sm font-medium mb-2">Deep Sleep (hours)</label>
-                    <input
-                      type="number"
-                      step="0.1"
-                      value={formData.deepSleep}
-                      onChange={(e) => setFormData({...formData, deepSleep: e.target.value})}
-                      className="w-full bg-[#D44C2E]/10 border border-[#F7E987]/30 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-[#F7E987] focus:border-transparent transition-all"
-                    />
-                  </div>
-                  {/* REM Sleep */}
-                  <div>
-                    <label className="block text-black text-sm font-medium mb-2">REM Sleep (hours)</label>
-                    <input
-                      type="number"
-                      step="0.1"
-                      value={formData.remSleep}
-                      onChange={(e) => setFormData({...formData, remSleep: e.target.value})}
-                      className="w-full bg-[#D44C2E]/10 border border-[#F7E987]/30 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-[#F7E987] focus:border-transparent transition-all"
-                    />
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="space-y-4">
+                      {/* Deep Sleep */}
+                      <div>
+                        <label className="block text-white text-sm font-medium mb-2">Deep Sleep (hours)</label>
+                        <input
+                          type="number"
+                          step="0.1"
+                          value={formData.deepSleep}
+                          onChange={(e) => setFormData({...formData, deepSleep: e.target.value})}
+                          className="w-full bg-[#D44C2E]/10 border border-[#F7E987]/30 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-[#F7E987] focus:border-transparent transition-all"
+                        />
+                      </div>
+                      {/* Light Sleep */}
+                      <div>
+                        <label className="block text-white text-sm font-medium mb-2">Light Sleep (hours)</label>
+                        <input
+                          type="number"
+                          step="0.1"
+                          value={formData.lightSleep}
+                          onChange={(e) => setFormData({...formData, lightSleep: e.target.value})}
+                          className="w-full bg-[#D44C2E]/10 border border-[#F7E987]/30 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-[#F7E987] focus:border-transparent transition-all"
+                        />
+                      </div>
+                    </div>
+                    
+                    <div className="space-y-4">
+                      {/* REM Sleep */}
+                      <div>
+                        <label className="block text-white text-sm font-medium mb-2">REM Sleep (hours)</label>
+                        <input
+                          type="number"
+                          step="0.1"
+                          value={formData.remSleep}
+                          onChange={(e) => setFormData({...formData, remSleep: e.target.value})}
+                          className="w-full bg-[#D44C2E]/10 border border-[#F7E987]/30 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-[#F7E987] focus:border-transparent transition-all"
+                        />
+                      </div>
+                      {/* Time Unable to Sleep/Others */}
+                      <div>
+                        <label className="block text-white text-sm font-medium mb-2">Time Unable to Sleep/Others (hours)</label>
+                        <input
+                          type="number"
+                          step="0.1"
+                          value={formData.unableToSleep}
+                          onChange={(e) => setFormData({...formData, unableToSleep: e.target.value})}
+                          className="w-full bg-[#D44C2E]/10 border border-[#F7E987]/30 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-[#F7E987] focus:border-transparent transition-all"
+                        />
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -247,9 +251,134 @@ function SleepTracker() {
               Analyze Sleep Efficiency
             </button>
           </form>
-          </div>
         </div>
       </main>
+
+      {/* Sleep Dashboard */}
+      <div className="py-16 w-full bg-gradient-to-b from-[#191970] to-purple-700">
+        <div className="max-w-7xl mx-auto px-4">
+          <h2 className="text-4xl font-bold text-white mb-8 text-center">Sleep Dashboard</h2>
+          
+          {/* Stats Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            {/* Sleep Score */}
+            <div className="bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-[#86C1FF]/30">
+              <h3 className="text-lg font-semibold text-white mb-2">Sleep Score</h3>
+              <div className="flex items-center">
+                <div className="text-4xl font-bold text-[#86C1FF]">85</div>
+                <span className="ml-2 text-green-400">+5%</span>
+              </div>
+              <p className="text-white/60 text-sm mt-2">Based on last week's data</p>
+            </div>
+
+            {/* Average Sleep Duration */}
+            <div className="bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-[#86C1FF]/30">
+              <h3 className="text-lg font-semibold text-white mb-2">Avg Sleep Duration</h3>
+              <div className="flex items-center">
+                <div className="text-4xl font-bold text-[#86C1FF]">7.5h</div>
+                <span className="ml-2 text-yellow-400">-30m</span>
+              </div>
+              <p className="text-white/60 text-sm mt-2">Compared to last week</p>
+            </div>
+
+            {/* Sleep Quality */}
+            <div className="bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-[#86C1FF]/30">
+              <h3 className="text-lg font-semibold text-white mb-2">Sleep Quality</h3>
+              <div className="flex items-center">
+                <div className="text-4xl font-bold text-[#86C1FF]">Good</div>
+                <span className="ml-2 text-green-400">↑</span>
+              </div>
+              <p className="text-white/60 text-sm mt-2">Deep sleep improved</p>
+            </div>
+
+            {/* Sleep Consistency */}
+            <div className="bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-[#86C1FF]/30">
+              <h3 className="text-lg font-semibold text-white mb-2">Sleep Consistency</h3>
+              <div className="flex items-center">
+                <div className="text-4xl font-bold text-[#86C1FF]">92%</div>
+                <span className="ml-2 text-green-400">+8%</span>
+              </div>
+              <p className="text-white/60 text-sm mt-2">Bedtime routine improved</p>
+            </div>
+          </div>
+
+          {/* Sleep Phases Chart */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* Weekly Sleep Pattern */}
+            <div className="bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-[#86C1FF]/30">
+              <h3 className="text-xl font-semibold text-white mb-4">Weekly Sleep Pattern</h3>
+              <div className="h-64 flex items-end justify-between gap-2">
+                {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((day, i) => (
+                  <div key={day} className="flex-1 flex flex-col items-center">
+                    <div 
+                      className="w-full bg-gradient-to-t from-[#4A90E2] to-[#86C1FF] rounded-t-lg"
+                      style={{ 
+                        height: `${Math.random() * 40 + 40}%`,
+                        opacity: i === 6 ? '1' : '0.7'
+                      }}
+                    ></div>
+                    <span className="text-white/60 text-sm mt-2">{day}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Sleep Quality Distribution */}
+            <div className="bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-[#86C1FF]/30">
+              <h3 className="text-xl font-semibold text-white mb-4">Sleep Phases Distribution</h3>
+              <div className="relative h-64">
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-48 h-48 rounded-full border-8 border-[#4A90E2] relative">
+                    <div className="absolute inset-0 border-8 border-[#86C1FF] rounded-full" 
+                         style={{ clipPath: 'polygon(50% 50%, 100% 50%, 100% 0, 50% 0)' }}></div>
+                    <div className="absolute inset-0 border-8 border-purple-400 rounded-full" 
+                         style={{ clipPath: 'polygon(50% 50%, 50% 0, 0 0, 0 50%)' }}></div>
+                  </div>
+                  <div className="absolute right-0 top-1/2 transform translate-x-4 -translate-y-1/2 space-y-2">
+                    <div className="flex items-center">
+                      <div className="w-3 h-3 bg-[#4A90E2] rounded-full mr-2"></div>
+                      <span className="text-white text-sm">Deep Sleep (30%)</span>
+                    </div>
+                    <div className="flex items-center">
+                      <div className="w-3 h-3 bg-[#86C1FF] rounded-full mr-2"></div>
+                      <span className="text-white text-sm">Light Sleep (45%)</span>
+                    </div>
+                    <div className="flex items-center">
+                      <div className="w-3 h-3 bg-purple-400 rounded-full mr-2"></div>
+                      <span className="text-white text-sm">REM Sleep (25%)</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Sleep Insights */}
+          <div className="mt-12 bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-[#86C1FF]/30">
+            <h3 className="text-xl font-semibold text-white mb-4">Sleep Insights</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="flex items-start">
+                <div className="w-8 h-8 rounded-full bg-green-400/20 flex items-center justify-center mr-3">
+                  <span className="text-green-400">↑</span>
+                </div>
+                <div>
+                  <h4 className="text-white font-medium">Improved Deep Sleep</h4>
+                  <p className="text-white/60 text-sm">Your deep sleep has increased by 12% this week</p>
+                </div>
+              </div>
+              <div className="flex items-start">
+                <div className="w-8 h-8 rounded-full bg-yellow-400/20 flex items-center justify-center mr-3">
+                  <span className="text-yellow-400">!</span>
+                </div>
+                <div>
+                  <h4 className="text-white font-medium">Bedtime Suggestion</h4>
+                  <p className="text-white/60 text-sm">Try going to bed 30 minutes earlier for optimal rest</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   );
 }
