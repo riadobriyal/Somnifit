@@ -52,51 +52,78 @@ function SleepTracker() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full bg-gradient-to-b from-[#191970] to-purple-700 px-20">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full bg-gradient-to-b from-[#191970] to-purple-700 px-6 md:px-20 py-16">
         {/* Card 1 */}
-        <div className="bg-blue-300 backdrop-blur-sm rounded-xl p-8 border border-white/20 hover:bg-blue-400 transition-all">
-          <img src="https://cdn.dribbble.com/userupload/23692188/file/original-1c34a9892c461bf6c0718f3a92254c71.gif" />
-          <h3 className="text-2xl font-bold mb-4 p-4">Sleep Tracking</h3>
-          <p className="text-black-100 px-4">
-            Start understanding your sleep like never before. With our
-            AI-powered sleep tracking, you don’t just see how long you slept —
-            you learn how well you slept. Our system monitors your sleep cycles,
-            patterns, and disturbances to give you a clear, personalized
-            overview of your nightly rest. No more guessing whether you slept
-            okay — you’ll know exactly what’s happening when you close your
-            eyes.
-          </p>
+        <div className="group relative transform hover:-translate-y-2 transition-all duration-300">
+          <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl opacity-30 group-hover:opacity-50 blur transition duration-300"></div>
+          <div className="relative bg-white/30 backdrop-blur-xl rounded-2xl p-6 border border-white/20 shadow-xl overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-600/10 rounded-2xl"></div>
+            <div className="relative">
+              <div className="overflow-hidden rounded-lg">
+                <img 
+                  src="https://cdn.dribbble.com/userupload/23692188/file/original-1c34a9892c461bf6c0718f3a92254c71.gif" 
+                  className="w-full h-48 object-cover transform group-hover:scale-110 transition-all duration-700"
+                  alt="Sleep Tracking Animation"
+                />
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-4 mt-6">Sleep Tracking</h3>
+              <p className="text-white/90 text-lg">
+                Start understanding your sleep like never before. With our
+                AI-powered sleep tracking, you don't just see how long you slept —
+                you learn how well you slept. Our system monitors your sleep cycles,
+                patterns, and disturbances to give you a clear, personalized
+                overview of your nightly rest.
+              </p>
+            </div>
+          </div>
         </div>
 
         {/* Card 2 */}
-        <div className="bg-blue-300 backdrop-blur-sm rounded-xl p-8 border border-white/20 hover:bg-blue-400 transition-all">
-          <img src="https://i.pinimg.com/originals/15/f6/c7/15f6c787116f624ecc9684ca9fa24b9d.gif" />
-          <h3 className="text-2xl font-bold text-black mb-4 p-4">
-            Sleep Analytics
-          </h3>
-          <p className="text-black-100 px-4">
-            What if your sleep could speak to you? With our machine
-            learning-based analytics, it can. We dive deep into your sleep data
-            to uncover trends, patterns, and habits that are silently affecting
-            your rest. Whether it's that late-night screen time or irregular
-            bedtime, our intelligent system connects the dots and helps you make
-            sense of it all — so you can take back control of your sleep, one
-            insight at a time.
-          </p>
+        <div className="group relative transform hover:-translate-y-2 transition-all duration-300">
+          <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-500 to-blue-500 rounded-2xl opacity-30 group-hover:opacity-50 blur transition duration-300"></div>
+          <div className="relative bg-white/30 backdrop-blur-xl rounded-2xl p-6 border border-white/20 shadow-xl overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-blue-600/10 rounded-2xl"></div>
+            <div className="relative">
+              <div className="overflow-hidden rounded-lg">
+                <img 
+                  src="https://i.pinimg.com/originals/15/f6/c7/15f6c787116f624ecc9684ca9fa24b9d.gif" 
+                  className="w-full h-48 object-cover transform group-hover:scale-110 transition-all duration-700"
+                  alt="Sleep Analytics Animation"
+                />
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-4 mt-6">Sleep Analytics</h3>
+              <p className="text-white/90 text-lg">
+                What if your sleep could speak to you? Our machine learning-based
+                analytics dive deep into your sleep data to uncover trends and patterns.
+                Whether it's late-night screen time or irregular bedtime, our intelligent
+                system helps you make sense of it all.
+              </p>
+            </div>
+          </div>
         </div>
 
         {/* Card 3 */}
-        <div className="bg-blue-300 backdrop-blur-sm rounded-xl p-8 border border-white/20 hover:bg-blue-400 transition-all">
-          <img src="https://cdn.dribbble.com/userupload/41738906/file/original-d614b031798e74ea55deb4ea492d1a05.gif" />
-          <h3 className="text-2xl font-bold text-black mb-4 p-4">Smart Tips</h3>
-          <p className="text-black-100 px-4">
-            Not all sleep advice is created equal — and that’s why we don’t give
-            generic tips. Our AI learns from your unique sleep behavior and
-            gives you customized suggestions to help you sleep better every
-            night. From bedtime routines to small lifestyle changes, our smart
-            tips evolve with you. It’s like having your own personal sleep
-            coach, always ready with guidance that actually works for you.
-          </p>
+        <div className="group relative transform hover:-translate-y-2 transition-all duration-300">
+          <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl opacity-30 group-hover:opacity-50 blur transition duration-300"></div>
+          <div className="relative bg-white/30 backdrop-blur-xl rounded-2xl p-6 border border-white/20 shadow-xl overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-600/10 rounded-2xl"></div>
+            <div className="relative">
+              <div className="overflow-hidden rounded-lg">
+                <img 
+                  src="https://cdn.dribbble.com/userupload/41738906/file/original-d614b031798e74ea55deb4ea492d1a05.gif" 
+                  className="w-full h-48 object-cover transform group-hover:scale-110 transition-all duration-700"
+                  alt="Smart Tips Animation"
+                />
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-4 mt-6">Smart Tips</h3>
+              <p className="text-white/90 text-lg">
+                Not all sleep advice is created equal. Our AI learns from your unique
+                sleep behavior and gives you customized suggestions. From bedtime routines
+                to lifestyle changes, it's like having your own personal sleep coach,
+                always ready with guidance that works for you.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
       <main className="mx-auto py-16 w-full bg-gradient-to-b from-purple-700 to-[#191970]">
