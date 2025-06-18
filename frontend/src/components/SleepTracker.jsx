@@ -111,15 +111,19 @@ function SleepTracker() {
             </p>
           </div>
 
-          <form className="bg-white/5 backdrop-blur-md p-8 rounded-3xl border border-[#C6E0FF]/20 shadow-xl">
+          <div className="relative">
+            {/* Blue glow effect */}
+            <div className="absolute inset-0 bg-[#4A90E2]/20 blur-xl rounded-3xl"></div>
+            
+            <form className="relative bg-[#4A90E2]/10 backdrop-blur-xl p-8 rounded-3xl border border-[#86C1FF]/30 shadow-lg shadow-[#4A90E2]/20">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {/* Personal Info Section */}
               <div className="space-y-6">
-                <h3 className="text-2xl font-semibold text-[#FFE4B5]">Personal Details</h3>
+                <h3 className="text-2xl font-semibold text-black">Personal Details</h3>
                 <div className="space-y-4">
                   {/* Age Input */}
                   <div>
-                    <label className="block text-[#F5DEB3] text-sm font-medium mb-2">Age</label>
+                    <label className="block text-black text-sm font-medium mb-2">Age</label>
                     <input
                       type="number"
                       value={formData.age}
@@ -129,7 +133,7 @@ function SleepTracker() {
                   </div>
                   {/* Gender Buttons */}
                   <div>
-                    <label className="block text-[#F5DEB3] text-sm font-medium mb-3">Gender</label>
+                    <label className="block text-black text-sm font-medium mb-3">Gender</label>
                     <div className="grid grid-cols-2 gap-3">
                       {['Male', 'Female'].map((gender) => (
                         <button
@@ -152,11 +156,11 @@ function SleepTracker() {
 
               {/* Sleep Metrics Section */}
               <div className="space-y-6">
-                <h3 className="text-2xl font-semibold text-[#FFE4B5]">Sleep Data</h3>
+                <h3 className="text-2xl font-semibold text-black">Sleep Data</h3>
                 <div className="space-y-4">
                   {/* Bed Time */}
                   <div>
-                    <label className="block text-[#F5DEB3] text-sm font-medium mb-2">Bed Time</label>
+                    <label className="block text-black text-sm font-medium mb-2">Bed Time</label>
                     <input
                       type="time"
                       value={formData.bedTime}
@@ -166,7 +170,7 @@ function SleepTracker() {
                   </div>
                   {/* Wakeup Time */}
                   <div>
-                    <label className="block text-[#F5DEB3] text-sm font-medium mb-2">Wakeup Time</label>
+                    <label className="block text-black text-sm font-medium mb-2">Wakeup Time</label>
                     <input
                       type="time"
                       value={formData.wakeupTime}
@@ -176,12 +180,14 @@ function SleepTracker() {
                   </div>
                 </div>
               </div>
-              {/* Sleep Quality Section */}
-              <div className="space-y-6 md:col-span-2">
-                <h3 className="text-2xl font-semibold text-center text-[#FFE4B5]">Sleep Quality</h3>
+
+              {/* Sleep Duration Section */}
+              <div className="space-y-6">
+                <h3 className="text-2xl font-semibold text-black">Sleep Duration</h3>
                 <div className="space-y-4">
-                  <div className="max-w-md mx-auto">
-                    <label className="block text-[#F5DEB3] text-sm font-medium mb-2">Total Sleep Duration (hours)</label>
+                  {/* Total Sleep */}
+                  <div>
+                    <label className="block text-black text-sm font-medium mb-2">Total Sleep Duration (hours)</label>
                     <input
                       type="number"
                       step="0.1"
@@ -190,57 +196,45 @@ function SleepTracker() {
                       className="w-full bg-[#D44C2E]/10 border border-[#F7E987]/30 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-[#F7E987] focus:border-transparent transition-all"
                     />
                   </div>
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="space-y-4">
-                      {/* Deep Sleep */}
-                      <div>
-                        <label className="block text-[#F5DEB3] text-sm font-medium mb-2">Deep Sleep (hours)</label>
-                        <input
-                          type="number"
-                          step="0.1"
-                          value={formData.deepSleep}
-                          onChange={(e) => setFormData({...formData, deepSleep: e.target.value})}
-                          className="w-full bg-[#D44C2E]/10 border border-[#F7E987]/30 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-[#F7E987] focus:border-transparent transition-all"
-                        />
-                      </div>
-                      {/* Light Sleep */}
-                      <div>
-                        <label className="block text-[#F5DEB3] text-sm font-medium mb-2">Light Sleep (hours)</label>
-                        <input
-                          type="number"
-                          step="0.1"
-                          value={formData.lightSleep}
-                          onChange={(e) => setFormData({...formData, lightSleep: e.target.value})}
-                          className="w-full bg-[#D44C2E]/10 border border-[#F7E987]/30 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-[#F7E987] focus:border-transparent transition-all"
-                        />
-                      </div>
-                    </div>
-                    
-                    <div className="space-y-4">
-                      {/* REM Sleep */}
-                      <div>
-                        <label className="block text-[#F5DEB3] text-sm font-medium mb-2">REM Sleep (hours)</label>
-                        <input
-                          type="number"
-                          step="0.1"
-                          value={formData.remSleep}
-                          onChange={(e) => setFormData({...formData, remSleep: e.target.value})}
-                          className="w-full bg-[#D44C2E]/10 border border-[#F7E987]/30 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-[#F7E987] focus:border-transparent transition-all"
-                        />
-                      </div>
-                      {/* Time Unable to Sleep/Others */}
-                      <div>
-                        <label className="block text-[#F5DEB3] text-sm font-medium mb-2">Time Unable to Sleep/Others (hours)</label>
-                        <input
-                          type="number"
-                          step="0.1"
-                          value={formData.unableToSleep}
-                          onChange={(e) => setFormData({...formData, unableToSleep: e.target.value})}
-                          className="w-full bg-[#D44C2E]/10 border border-[#F7E987]/30 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-[#F7E987] focus:border-transparent transition-all"
-                        />
-                      </div>
-                    </div>
+                  {/* Light Sleep */}
+                  <div>
+                    <label className="block text-black text-sm font-medium mb-2">Light Sleep (hours)</label>
+                    <input
+                      type="number"
+                      step="0.1"
+                      value={formData.lightSleep}
+                      onChange={(e) => setFormData({...formData, lightSleep: e.target.value})}
+                      className="w-full bg-[#D44C2E]/10 border border-[#F7E987]/30 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-[#F7E987] focus:border-transparent transition-all"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Sleep Quality Section */}
+              <div className="space-y-6">
+                <h3 className="text-2xl font-semibold text-black">Sleep Quality</h3>
+                <div className="space-y-4">
+                  {/* Deep Sleep */}
+                  <div>
+                    <label className="block text-black text-sm font-medium mb-2">Deep Sleep (hours)</label>
+                    <input
+                      type="number"
+                      step="0.1"
+                      value={formData.deepSleep}
+                      onChange={(e) => setFormData({...formData, deepSleep: e.target.value})}
+                      className="w-full bg-[#D44C2E]/10 border border-[#F7E987]/30 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-[#F7E987] focus:border-transparent transition-all"
+                    />
+                  </div>
+                  {/* REM Sleep */}
+                  <div>
+                    <label className="block text-black text-sm font-medium mb-2">REM Sleep (hours)</label>
+                    <input
+                      type="number"
+                      step="0.1"
+                      value={formData.remSleep}
+                      onChange={(e) => setFormData({...formData, remSleep: e.target.value})}
+                      className="w-full bg-[#D44C2E]/10 border border-[#F7E987]/30 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-[#F7E987] focus:border-transparent transition-all"
+                    />
                   </div>
                 </div>
               </div>
@@ -253,6 +247,7 @@ function SleepTracker() {
               Analyze Sleep Efficiency
             </button>
           </form>
+          </div>
         </div>
       </main>
     </>
