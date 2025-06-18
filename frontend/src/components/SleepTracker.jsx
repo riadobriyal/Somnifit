@@ -4,7 +4,8 @@ import { StarField } from "./Home";
 
 function SleepTracker() {
   const [showTip, setShowTip] = useState(false);
-  const [sleepHours, setSleepHours] = useState(0);
+  const [sleepEfficiency, setSleepEfficiency] = useState(0);
+  const [sleepHours, setSleepHours] = useState(0)
   const [formData, setFormData] = useState({
     age: '',
     gender: '',
@@ -23,6 +24,45 @@ function SleepTracker() {
     }, 100);
     return () => clearInterval(interval);
   }, []);
+
+  const fetchSleep = async () => {
+    try {
+      const bedTimeHours = formData.bedTime ? parseInt(formData.bedTime.split(':')[0]) : 0;
+      const wakeupTimeHours = formData.wakeupTime ? parseInt(formData.wakeupTime.split(':')[0]) : 0;
+      
+      const res = await fetch('http://localhost:5000/sleep_predictor', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          age: formData.age,
+          gender: formData.gender,
+          'sleep_duration': formData.sleepDuration,
+          'bed_time_hours': bedTimeHours,
+          'wakeup_time_hours': wakeupTimeHours,
+          'deep_sleep': formData.deepSleep,
+          'awake_others_duration': formData.unableToSleep
+        })
+      })
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+      
+      const data = await res.json()
+      setSleepEfficiency(data.sleep_efficiency)
+      console.log('Sleep efficiency:', data.sleep_efficiency)
+    } catch (error) {
+      console.error('Error fetching sleep data:', error);
+    }
+  }
+
+  const scrollToForm = () => {
+    const formElement = document.getElementById('sleep-form');
+    if (formElement) {
+      formElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
 
   return (
     <>
@@ -46,7 +86,10 @@ function SleepTracker() {
             insights and personalized recommendations.
           </p>
 
-          <button className="mt-12 px-8 py-4 bg-purple-500 hover:bg-purple-400 text-white font-semibold rounded-lg text-lg transition-colors">
+          <button 
+            onClick={scrollToForm}
+            className="mt-12 px-8 py-4 bg-purple-500 hover:bg-purple-400 text-white font-semibold rounded-lg text-lg transition-colors"
+          >
             Get Started
           </button>
         </div>
@@ -54,11 +97,11 @@ function SleepTracker() {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full bg-gradient-to-b from-[#191970] to-purple-700 px-6 md:px-20 py-16">
         {/* Card 1 */}
-        <div className="group relative transform hover:-translate-y-2 transition-all duration-300">
-          <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl opacity-30 group-hover:opacity-50 blur transition duration-300"></div>
-          <div className="relative bg-white/30 backdrop-blur-xl rounded-2xl p-6 border border-white/20 shadow-xl overflow-hidden">
+        <div className="group relative transform hover:-translate-y-2 transition-all duration-300 h-full">
+          <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl opacity-30 group-hover:opacity-50 blur transition duration-300 "></div>
+          <div className="relative bg-white/30 backdrop-blur-xl rounded-2xl p-6 border border-white/20 shadow-xl overflow-hidden h-full">
             <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-600/10 rounded-2xl"></div>
-            <div className="relative">
+            <div className="relative h-full flex flex-col">
               <div className="overflow-hidden rounded-lg">
                 <img 
                   src="https://cdn.dribbble.com/userupload/23692188/file/original-1c34a9892c461bf6c0718f3a92254c71.gif" 
@@ -67,7 +110,7 @@ function SleepTracker() {
                 />
               </div>
               <h3 className="text-2xl font-bold text-white mb-4 mt-6">Sleep Tracking</h3>
-              <p className="text-white/90 text-lg">
+              <p className="text-white/90 text-lg flex-1">
                 Start understanding your sleep like never before. With our
                 AI-powered sleep tracking, you don't just see how long you slept —
                 you learn how well you slept. Our system monitors your sleep cycles,
@@ -79,11 +122,11 @@ function SleepTracker() {
         </div>
 
         {/* Card 2 */}
-        <div className="group relative transform hover:-translate-y-2 transition-all duration-300">
+        <div className="group relative transform hover:-translate-y-2 transition-all duration-300 h-full">
           <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-500 to-blue-500 rounded-2xl opacity-30 group-hover:opacity-50 blur transition duration-300"></div>
-          <div className="relative bg-white/30 backdrop-blur-xl rounded-2xl p-6 border border-white/20 shadow-xl overflow-hidden">
+          <div className="relative bg-white/30 backdrop-blur-xl rounded-2xl p-6 border border-white/20 shadow-xl overflow-hidden h-full">
             <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-blue-600/10 rounded-2xl"></div>
-            <div className="relative">
+            <div className="relative h-full flex flex-col">
               <div className="overflow-hidden rounded-lg">
                 <img 
                   src="https://i.pinimg.com/originals/15/f6/c7/15f6c787116f624ecc9684ca9fa24b9d.gif" 
@@ -92,7 +135,7 @@ function SleepTracker() {
                 />
               </div>
               <h3 className="text-2xl font-bold text-white mb-4 mt-6">Sleep Analytics</h3>
-              <p className="text-white/90 text-lg">
+              <p className="text-white/90 text-lg flex-1">
                 What if your sleep could speak to you? Our machine learning-based
                 analytics dive deep into your sleep data to uncover trends and patterns.
                 Whether it's late-night screen time or irregular bedtime, our intelligent
@@ -103,11 +146,11 @@ function SleepTracker() {
         </div>
 
         {/* Card 3 */}
-        <div className="group relative transform hover:-translate-y-2 transition-all duration-300">
+        <div className="group relative transform hover:-translate-y-2 transition-all duration-300 h-full">
           <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl opacity-30 group-hover:opacity-50 blur transition duration-300"></div>
-          <div className="relative bg-white/30 backdrop-blur-xl rounded-2xl p-6 border border-white/20 shadow-xl overflow-hidden">
+          <div className="relative bg-white/30 backdrop-blur-xl rounded-2xl p-6 border border-white/20 shadow-xl overflow-hidden h-full">
             <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-600/10 rounded-2xl"></div>
-            <div className="relative">
+            <div className="relative h-full flex flex-col">
               <div className="overflow-hidden rounded-lg">
                 <img 
                   src="https://cdn.dribbble.com/userupload/41738906/file/original-d614b031798e74ea55deb4ea492d1a05.gif" 
@@ -116,7 +159,7 @@ function SleepTracker() {
                 />
               </div>
               <h3 className="text-2xl font-bold text-white mb-4 mt-6">Smart Tips</h3>
-              <p className="text-white/90 text-lg">
+              <p className="text-white/90 text-lg flex-1">
                 Not all sleep advice is created equal. Our AI learns from your unique
                 sleep behavior and gives you customized suggestions. From bedtime routines
                 to lifestyle changes, it's like having your own personal sleep coach,
@@ -137,7 +180,7 @@ function SleepTracker() {
             </p>
           </div>
 
-          <form className="bg-white/5 backdrop-blur-md p-8 rounded-3xl border border-[#C6E0FF]/20 shadow-xl">
+          <form id="sleep-form" className="bg-white/5 backdrop-blur-md p-8 rounded-3xl border border-[#C6E0FF]/20 shadow-xl">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="space-y-6">
                 <h3 className="text-2xl font-semibold text-white">Personal Details</h3>
@@ -272,7 +315,11 @@ function SleepTracker() {
             </div>
 
             <button
-              type="submit"
+              type="button"
+              onClick={(e) => {
+                e.preventDefault();
+                fetchSleep();
+              }}
               className="w-full mt-10 bg-gradient-to-r from-[#004E98] to-[#3A6EA5] text-white font-medium py-4 px-8 rounded-xl hover:from-[#003E78] hover:to-[#2A5E95] transition-all duration-200 shadow-lg"
             >
               Analyze Sleep Efficiency

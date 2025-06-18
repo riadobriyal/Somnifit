@@ -1,8 +1,10 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import pickle
 import numpy as np
 
 app = Flask(__name__)
+CORS(app)
 
 sleep_transformer = pickle.load(open('models/column_transformer_sleep.pkl','rb'))
 lin_model = pickle.load(open('models/lin_reg_sleep.pkl','rb'))
@@ -28,7 +30,7 @@ def sleep_prediction():
     input_data = np.array([[sleep_duration,deep_sleep,awake_others_duration,age,gender,bed_time_hours,wakeup_time_hours]])
     prediction = lin_model.predict(sleep_transformer.transform(input_data))
 
-    return jsonify({'sleep_efficiency': float(prediction)})
+    return jsonify({'sleep_efficiency': float(prediction[0])})
 
 
 @app.route("/activity_predictor",methods=['POST'])
@@ -41,13 +43,11 @@ def activity_prediction():
     age = float(data.get('age'))
     gender = data.get('gender')
     BMI_Case = data.get('BMI_Case')
-    
 
     input_data = np.array([[weight,height,BMI,gender,age,BMI_Case]])
     prediction = log_model.predict(activity_transformer.transform(input_data))
 
     return jsonify({'Exercise Recommendation Plan': int(prediction)})
-
 
 if __name__ == "__main__":
     app.run(debug=True,host="0.0.0.0",port=5000)
