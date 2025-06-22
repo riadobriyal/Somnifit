@@ -5,10 +5,11 @@ import { StarField } from "./Home";
 function SleepTracker() {
   const [showTip, setShowTip] = useState(false);
   const [sleepEfficiency, setSleepEfficiency] = useState(0);
-  const [sleepHours, setSleepHours] = useState(0)
+  const [sleepHours, setSleepHours] = useState(0);
+  const [showDashboard, setShowDashboard] = useState(false);
   const [formData, setFormData] = useState({
     age: '',
-    gender: '',
+    gender: 'Male',
     bedTime: '',
     wakeupTime: '',
     sleepDuration: '',
@@ -18,15 +19,16 @@ function SleepTracker() {
     unableToSleep: ''
   });
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setSleepHours((prev) => (prev < 8.5 ? prev + 0.1 : 0));
-    }, 100);
-    return () => clearInterval(interval);
-  }, []);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setSleepHours((prev) => (prev < 8.5 ? prev + 0.1 : 0));
+  //   }, 100);
+  //   return () => clearInterval(interval);
+  // }, []);
 
   const fetchSleep = async () => {
     try {
+      setSleepEfficiency(0)
       const bedTimeHours = formData.bedTime ? parseInt(formData.bedTime.split(':')[0]) : 0;
       const wakeupTimeHours = formData.wakeupTime ? parseInt(formData.wakeupTime.split(':')[0]) : 0;
       
@@ -51,6 +53,15 @@ function SleepTracker() {
       
       const data = await res.json()
       setSleepEfficiency(data.sleep_efficiency)
+      setShowDashboard(true)
+      
+      setTimeout(() => {
+        const formElement = document.getElementById('dashboard');
+        if (formElement) {
+          formElement.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+      
       console.log('Sleep efficiency:', data.sleep_efficiency)
     } catch (error) {
       console.error('Error fetching sleep data:', error);
@@ -170,7 +181,7 @@ function SleepTracker() {
         </div>
       </div>
       <main className="mx-auto py-16 w-full bg-gradient-to-b from-purple-700 to-[#191970]">
-        <div className="max-w-4xl mx-auto space-y-12">
+        <div id="sleep-form" className="max-w-4xl mx-auto space-y-12">
           <div className="text-center space-y-4">
             <h2 className="text-5xl font-bold text-[#C6E0FF]">
               Track Your Sleep
@@ -180,7 +191,7 @@ function SleepTracker() {
             </p>
           </div>
 
-          <form id="sleep-form" className="bg-white/5 backdrop-blur-md p-8 rounded-3xl border border-[#C6E0FF]/20 shadow-xl">
+          <form className="bg-white/5 backdrop-blur-md p-8 rounded-3xl border border-[#C6E0FF]/20 shadow-xl">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="space-y-6">
                 <h3 className="text-2xl font-semibold text-white">Personal Details</h3>
@@ -329,132 +340,339 @@ function SleepTracker() {
       </main>
 
       {/* Sleep Dashboard */}
-      <div className="py-16 w-full bg-gradient-to-b from-[#191970] to-purple-700">
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-4xl font-bold text-white mb-8 text-center">Sleep Dashboard</h2>
-          
-          {/* Stats Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-            {/* Sleep Score */}
-            <div className="bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-[#86C1FF]/30">
-              <h3 className="text-lg font-semibold text-white mb-2">Sleep Score</h3>
-              <div className="flex items-center">
-                <div className="text-4xl font-bold text-[#86C1FF]">85</div>
-                <span className="ml-2 text-green-400">+5%</span>
-              </div>
-              <p className="text-white/60 text-sm mt-2">Based on last week's data</p>
-            </div>
-
-            {/* Average Sleep Duration */}
-            <div className="bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-[#86C1FF]/30">
-              <h3 className="text-lg font-semibold text-white mb-2">Avg Sleep Duration</h3>
-              <div className="flex items-center">
-                <div className="text-4xl font-bold text-[#86C1FF]">7.5h</div>
-                <span className="ml-2 text-yellow-400">-30m</span>
-              </div>
-              <p className="text-white/60 text-sm mt-2">Compared to last week</p>
-            </div>
-
-            {/* Sleep Quality */}
-            <div className="bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-[#86C1FF]/30">
-              <h3 className="text-lg font-semibold text-white mb-2">Sleep Quality</h3>
-              <div className="flex items-center">
-                <div className="text-4xl font-bold text-[#86C1FF]">Good</div>
-                <span className="ml-2 text-green-400">↑</span>
-              </div>
-              <p className="text-white/60 text-sm mt-2">Deep sleep improved</p>
-            </div>
-
-            {/* Sleep Consistency */}
-            <div className="bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-[#86C1FF]/30">
-              <h3 className="text-lg font-semibold text-white mb-2">Sleep Consistency</h3>
-              <div className="flex items-center">
-                <div className="text-4xl font-bold text-[#86C1FF]">92%</div>
-                <span className="ml-2 text-green-400">+8%</span>
-              </div>
-              <p className="text-white/60 text-sm mt-2">Bedtime routine improved</p>
-            </div>
-          </div>
-
-          {/* Sleep Phases Chart */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {/* Weekly Sleep Pattern */}
-            <div className="bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-[#86C1FF]/30">
-              <h3 className="text-xl font-semibold text-white mb-4">Weekly Sleep Pattern</h3>
-              <div className="h-64 flex items-end justify-between gap-2">
-                {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((day, i) => (
-                  <div key={day} className="flex-1 flex flex-col items-center">
-                    <div 
-                      className="w-full bg-gradient-to-t from-[#4A90E2] to-[#86C1FF] rounded-t-lg"
-                      style={{ 
-                        height: `${Math.random() * 40 + 40}%`,
-                        opacity: i === 6 ? '1' : '0.7'
-                      }}
-                    ></div>
-                    <span className="text-white/60 text-sm mt-2">{day}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Sleep Quality Distribution */}
-            <div className="bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-[#86C1FF]/30">
-              <h3 className="text-xl font-semibold text-white mb-4">Sleep Phases Distribution</h3>
-              <div className="relative h-64">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-48 h-48 rounded-full border-8 border-[#4A90E2] relative">
-                    <div className="absolute inset-0 border-8 border-[#86C1FF] rounded-full" 
-                         style={{ clipPath: 'polygon(50% 50%, 100% 50%, 100% 0, 50% 0)' }}></div>
-                    <div className="absolute inset-0 border-8 border-purple-400 rounded-full" 
-                         style={{ clipPath: 'polygon(50% 50%, 50% 0, 0 0, 0 50%)' }}></div>
-                  </div>
-                  <div className="absolute right-0 top-1/2 transform translate-x-4 -translate-y-1/2 space-y-2">
-                    <div className="flex items-center">
-                      <div className="w-3 h-3 bg-[#4A90E2] rounded-full mr-2"></div>
-                      <span className="text-white text-sm">Deep Sleep (30%)</span>
-                    </div>
-                    <div className="flex items-center">
-                      <div className="w-3 h-3 bg-[#86C1FF] rounded-full mr-2"></div>
-                      <span className="text-white text-sm">Light Sleep (45%)</span>
-                    </div>
-                    <div className="flex items-center">
-                      <div className="w-3 h-3 bg-purple-400 rounded-full mr-2"></div>
-                      <span className="text-white text-sm">REM Sleep (25%)</span>
+      {showDashboard && (
+        <div className="py-16 w-full bg-gradient-to-b from-[#191970] to-purple-700">
+          <div id="dashboard" className="max-w-7xl mx-auto px-4">
+            <h2 className="text-4xl font-bold text-white mb-8 text-center">Sleep Dashboard</h2>
+            
+            {/* Stats Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+              {/* Sleep Efficiency Meter */}
+              <div className="bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-[#86C1FF]/30 flex flex-col">
+                <h3 className="text-lg font-semibold text-white mb-4 text-center">Sleep Efficiency</h3>
+                <div className="flex-1 flex flex-col justify-center items-center">
+                  <div className="relative w-32 h-16 mx-auto mb-4">
+                    <svg className="w-32 h-16" viewBox="0 0 120 60">
+                      <path
+                        d="M 10 50 A 50 50 0 0 1 110 50"
+                        stroke="#374151"
+                        strokeWidth="8"
+                        fill="none"
+                      />
+                      <path
+                        d="M 10 50 A 50 50 0 0 1 110 50"
+                        stroke="#86C1FF"
+                        strokeWidth="8"
+                        fill="none"
+                        strokeDasharray={`${(sleepEfficiency / 100) * 157} 157`}
+                        strokeLinecap="round"
+                        className="transition-all duration-1000"
+                      />
+                    </svg>
+                    <div className="absolute inset-0 flex items-end justify-center pb-2">
+                      <span className="text-2xl font-bold text-[#86C1FF]">{Math.round(sleepEfficiency)}%</span>
                     </div>
                   </div>
+                  <p className="text-white/60 text-sm text-center">AI-calculated efficiency</p>
+                </div>
+              </div>
+
+              {/* Bed Time Clock */}
+              <div className="bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-[#86C1FF]/30 flex flex-col">
+                <h3 className="text-lg font-semibold text-white mb-4 text-center">Bed Time</h3>
+                <div className="flex-1 flex flex-col justify-center items-center">
+                  <div className="relative w-24 h-24 mx-auto mb-4">
+                    <svg className="w-24 h-24" viewBox="0 0 80 80">
+                      <circle cx="40" cy="40" r="35" stroke="#374151" strokeWidth="2" fill="none"/>
+                      {/* Hour markers */}
+                      {[...Array(12)].map((_, i) => (
+                        <line
+                          key={i}
+                          x1="40"
+                          y1="8"
+                          x2="40"
+                          y2="12"
+                          stroke="#86C1FF"
+                          strokeWidth="1"
+                          transform={`rotate(${i * 30 + 90} 40 40)`}
+                        />
+                      ))}
+                      {/* Hour hand */}
+                      <line
+                        x1="40"
+                        y1="40"
+                        x2="40"
+                        y2="25"
+                        stroke="#86C1FF"
+                        strokeWidth="3"
+                        strokeLinecap="round"
+                        transform={`rotate(${((parseInt(formData.bedTime?.split(':')[0] || 0) % 12) * 30)} 40 40)`}
+                      />
+                      {/* Minute hand */}
+                      <line
+                        x1="40"
+                        y1="40"
+                        x2="40"
+                        y2="15"
+                        stroke="#86C1FF"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        transform={`rotate(${(parseInt(formData.bedTime?.split(':')[1] || 0) * 6)} 40 40)`}
+                      />
+                      <circle cx="40" cy="40" r="2" fill="#86C1FF"/>
+                    </svg>
+                  </div>
+                  <p className="text-white text-center font-medium">{formData.bedTime || '--:--'}</p>
+                </div>
+              </div>
+
+              {/* Wake Time Clock */}
+              <div className="bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-[#86C1FF]/30 flex flex-col">
+                <h3 className="text-lg font-semibold text-white mb-4 text-center">Wake Time</h3>
+                <div className="flex-1 flex flex-col justify-center items-center">
+                  <div className="relative w-24 h-24 mx-auto mb-4">
+                    <svg className="w-24 h-24" viewBox="0 0 80 80">
+                      <circle cx="40" cy="40" r="35" stroke="#374151" strokeWidth="2" fill="none"/>
+                      {/* Hour markers */}
+                      {[...Array(12)].map((_, i) => (
+                        <line
+                          key={i}
+                          x1="40"
+                          y1="8"
+                          x2="40"
+                          y2="12"
+                          stroke="#F59E0B"
+                          strokeWidth="1"
+                          transform={`rotate(${i * 30 + 90} 40 40)`}
+                        />
+                      ))}
+                      {/* Hour hand */}
+                      <line
+                        x1="40"
+                        y1="40"
+                        x2="40"
+                        y2="25"
+                        stroke="#F59E0B"
+                        strokeWidth="3"
+                        strokeLinecap="round"
+                        transform={`rotate(${((parseInt(formData.wakeupTime?.split(':')[0] || 0) % 12) * 30)} 40 40)`}
+                      />
+                      {/* Minute hand */}
+                      <line
+                        x1="40"
+                        y1="40"
+                        x2="40"
+                        y2="15"
+                        stroke="#F59E0B"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        transform={`rotate(${(parseInt(formData.wakeupTime?.split(':')[1] || 0) * 6)} 40 40)`}
+                      />
+                      <circle cx="40" cy="40" r="2" fill="#F59E0B"/>
+                    </svg>
+                  </div>
+                  <p className="text-white text-center font-medium">{formData.wakeupTime || '--:--'}</p>
+                </div>
+              </div>
+
+              {/* Sleep Breakdown Meter */}
+              <div className="bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-[#86C1FF]/30 flex flex-col">
+                <h3 className="text-lg font-semibold text-white mb-4 text-center">Sleep Breakdown</h3>
+                <div className="flex-1 flex flex-col justify-center items-center">
+                  <div className="relative w-32 h-32 mx-auto mb-4">
+                    <svg className="w-32 h-32 transform -rotate-90" viewBox="0 0 120 120">
+                      {/* Background circle */}
+                      <circle cx="60" cy="60" r="50" stroke="#374151" strokeWidth="12" fill="none"/>
+                      
+                      {(() => {
+                        const total = parseFloat(formData.sleepDuration || 0);
+                        const deep = parseFloat(formData.deepSleep || 0);
+                        const light = parseFloat(formData.lightSleep || 0);
+                        const rem = parseFloat(formData.remSleep || 0);
+                        const awake = parseFloat(formData.unableToSleep || 0);
+                        
+                        const circumference = 2 * Math.PI * 50;
+                        let currentOffset = 0;
+                        
+                        return (
+                          <>
+                            {/* Deep Sleep */}
+                            {deep > 0 && (
+                              <circle
+                                cx="60"
+                                cy="60"
+                                r="50"
+                                stroke="#1E40AF"
+                                strokeWidth="12"
+                                fill="none"
+                                strokeDasharray={`${(deep / total) * circumference} ${circumference}`}
+                                strokeDashoffset={-currentOffset}
+                                strokeLinecap="round"
+                              />
+                            )}
+                            
+                            {/* Light Sleep */}
+                            {light > 0 && (() => {
+                              currentOffset += (deep / total) * circumference;
+                              return (
+                                <circle
+                                  cx="60"
+                                  cy="60"
+                                  r="50"
+                                  stroke="#60A5FA"
+                                  strokeWidth="12"
+                                  fill="none"
+                                  strokeDasharray={`${(light / total) * circumference} ${circumference}`}
+                                  strokeDashoffset={-currentOffset}
+                                  strokeLinecap="round"
+                                />
+                              );
+                            })()}
+                            
+                            {/* REM Sleep */}
+                            {rem > 0 && (() => {
+                              currentOffset += (light / total) * circumference;
+                              return (
+                                <circle
+                                  cx="60"
+                                  cy="60"
+                                  r="50"
+                                  stroke="#A855F7"
+                                  strokeWidth="12"
+                                  fill="none"
+                                  strokeDasharray={`${(rem / total) * circumference} ${circumference}`}
+                                  strokeDashoffset={-currentOffset}
+                                  strokeLinecap="round"
+                                />
+                              );
+                            })()}
+                            
+                            {/* Awake Time */}
+                            {awake > 0 && (() => {
+                              currentOffset += (rem / total) * circumference;
+                              return (
+                                <circle
+                                  cx="60"
+                                  cy="60"
+                                  r="50"
+                                  stroke="#EF4444"
+                                  strokeWidth="12"
+                                  fill="none"
+                                  strokeDasharray={`${(awake / total) * circumference} ${circumference}`}
+                                  strokeDashoffset={-currentOffset}
+                                  strokeLinecap="round"
+                                />
+                              );
+                            })()}
+                          </>
+                        );
+                      })()}
+                    </svg>
+                    <div className="absolute inset-0 flex flex-col items-center justify-center">
+                      <span className="text-xl font-bold text-[#86C1FF]">{formData.sleepDuration || '0'}h</span>
+                      <span className="text-xs text-white/60">Total</span>
+                    </div>
+                  </div>
+                  <div className="space-y-1">
+                    <div className="flex items-center text-xs">
+                      <div className="w-2 h-2 bg-blue-800 rounded-full mr-2"></div>
+                      <span className="text-white/80">Deep: {formData.deepSleep || '0'}h</span>
+                    </div>
+                    <div className="flex items-center text-xs">
+                      <div className="w-2 h-2 bg-blue-400 rounded-full mr-2"></div>
+                      <span className="text-white/80">Light: {formData.lightSleep || '0'}h</span>
+                    </div>
+                    <div className="flex items-center text-xs">
+                      <div className="w-2 h-2 bg-purple-400 rounded-full mr-2"></div>
+                      <span className="text-white/80">REM: {formData.remSleep || '0'}h</span>
+                    </div>
+                    <div className="flex items-center text-xs">
+                      <div className="w-2 h-2 bg-red-400 rounded-full mr-2"></div>
+                      <span className="text-white/80">Awake: {formData.unableToSleep || '0'}h</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          {/* Sleep Insights */}
-          <div className="mt-12 bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-[#86C1FF]/30">
-            <h3 className="text-xl font-semibold text-white mb-4">Sleep Insights</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="flex items-start">
-                <div className="w-8 h-8 rounded-full bg-green-400/20 flex items-center justify-center mr-3">
-                  <span className="text-green-400">↑</span>
-                </div>
-                <div>
-                  <h4 className="text-white font-medium">Improved Deep Sleep</h4>
-                  <p className="text-white/60 text-sm">Your deep sleep has increased by 12% this week</p>
+            {/* Sleep Phases Chart */}
+            {/* <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <div className="bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-[#86C1FF]/30">
+                <h3 className="text-xl font-semibold text-white mb-4">Weekly Sleep Pattern</h3>
+                <div className="h-64 flex items-end justify-between gap-2">
+                  {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((day, i) => (
+                    <div key={day} className="flex-1 flex flex-col items-center">
+                      <div 
+                        className="w-full bg-gradient-to-t from-[#4A90E2] to-[#86C1FF] rounded-t-lg"
+                        style={{ 
+                          height: `${Math.random() * 40 + 40}%`,
+                          opacity: i === 6 ? '1' : '0.7'
+                        }}
+                      ></div>
+                      <span className="text-white/60 text-sm mt-2">{day}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
-              <div className="flex items-start">
-                <div className="w-8 h-8 rounded-full bg-yellow-400/20 flex items-center justify-center mr-3">
-                  <span className="text-yellow-400">!</span>
+
+              <div className="bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-[#86C1FF]/30">
+                <h3 className="text-xl font-semibold text-white mb-4">Sleep Phases Distribution</h3>
+                <div className="relative h-64">
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-48 h-48 rounded-full border-8 border-[#4A90E2] relative">
+                      <div className="absolute inset-0 border-8 border-[#86C1FF] rounded-full" 
+                           style={{ clipPath: 'polygon(50% 50%, 100% 50%, 100% 0, 50% 0)' }}></div>
+                      <div className="absolute inset-0 border-8 border-purple-400 rounded-full" 
+                           style={{ clipPath: 'polygon(50% 50%, 50% 0, 0 0, 0 50%)' }}></div>
+                    </div>
+                    <div className="absolute right-0 top-1/2 transform translate-x-4 -translate-y-1/2 space-y-2">
+                      <div className="flex items-center">
+                        <div className="w-3 h-3 bg-[#4A90E2] rounded-full mr-2"></div>
+                        <span className="text-white text-sm">Deep Sleep (30%)</span>
+                      </div>
+                      <div className="flex items-center">
+                        <div className="w-3 h-3 bg-[#86C1FF] rounded-full mr-2"></div>
+                        <span className="text-white text-sm">Light Sleep (45%)</span>
+                      </div>
+                      <div className="flex items-center">
+                        <div className="w-3 h-3 bg-purple-400 rounded-full mr-2"></div>
+                        <span className="text-white text-sm">REM Sleep (25%)</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <h4 className="text-white font-medium">Bedtime Suggestion</h4>
-                  <p className="text-white/60 text-sm">Try going to bed 30 minutes earlier for optimal rest</p>
+              </div>
+            </div> */}
+
+            {/* Sleep Insights */}
+            <div className="mt-12 bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-[#86C1FF]/30">
+              <h3 className="text-xl font-semibold text-white mb-4">Sleep Insights</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="flex items-start">
+                  <div className="w-8 h-8 rounded-full bg-green-400/20 flex items-center justify-center mr-3">
+                    <span className="text-green-400">↑</span>
+                  </div>
+                  <div>
+                    <h4 className="text-white font-medium">Improved Deep Sleep</h4>
+                    <p className="text-white/60 text-sm">Your deep sleep has increased by 12% this week</p>
+                  </div>
+                </div>
+                <div className="flex items-start">
+                  <div className="w-8 h-8 rounded-full bg-yellow-400/20 flex items-center justify-center mr-3">
+                    <span className="text-yellow-400">!</span>
+                  </div>
+                  <div>
+                    <h4 className="text-white font-medium">Bedtime Suggestion</h4>
+                    <p className="text-white/60 text-sm">Try going to bed 30 minutes earlier for optimal rest</p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
     </>
-  );
+  )
 }
 
 export default SleepTracker;
