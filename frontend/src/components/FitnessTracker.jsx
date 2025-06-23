@@ -232,9 +232,41 @@ function FitnessTracker() {
                     Calculate BMI
                   </button>
                   {bmiResult && (
-                    <div className="mt-6 text-center">
+                    <div className="mt-6 text-center w-full">
                       <div className="text-2xl font-bold text-orange-700">Your BMI: {bmiResult.value}</div>
                       <div className="text-lg text-white mt-2">Category: <span className="font-semibold text-orange-500">{bmiResult.category}</span></div>
+                      {/* BMI Meter */}
+                      <div className="mt-6 w-full flex flex-col items-center">
+                        <div className="relative w-full max-w-md h-6 rounded-full overflow-hidden bg-gradient-to-r from-blue-400 via-green-400 via-yellow-400 to-red-500 shadow-inner">
+                          {/* Segments for reference */}
+                          <div className="absolute left-0 top-0 h-full" style={{width: '18.5%', background: 'rgba(59,130,246,0.2)'}}></div>
+                          <div className="absolute left-[18.5%] top-0 h-full" style={{width: '24%', background: 'rgba(34,197,94,0.2)'}}></div>
+                          <div className="absolute left-[42.5%] top-0 h-full" style={{width: '17.5%', background: 'rgba(251,191,36,0.2)'}}></div>
+                          <div className="absolute left-[60%] top-0 h-full" style={{width: '40%', background: 'rgba(239,68,68,0.2)'}}></div>
+                          {/* Pointer */}
+                          {(() => {
+                            const bmi = parseFloat(bmiResult.value);
+                            let left = 0;
+                            if (bmi < 18.5) left = (bmi / 40) * 100;
+                            else if (bmi < 25) left = ((bmi - 18.5) / (25 - 18.5) * 24 + 18.5) / 40 * 100;
+                            else if (bmi < 30) left = ((bmi - 25) / (30 - 25) * 17.5 + 42.5) / 100 * 100;
+                            else left = ((bmi - 30) / (40 - 30) * 40 + 60) / 100 * 100;
+                            if (left > 100) left = 100;
+                            return (
+                              <div className="absolute top-0" style={{ left: `calc(${left}% - 10px)` }}>
+                                <div className="w-5 h-5 bg-orange-500 rounded-full border-4 border-white shadow-lg -mt-2"></div>
+                                <div className="w-0 h-0 border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-orange-500 mx-auto -mt-1"></div>
+                              </div>
+                            );
+                          })()}
+                        </div>
+                        <div className="flex justify-between w-full max-w-md text-xs text-white mt-2">
+                          <span className="text-blue-200">Underweight</span>
+                          <span className="text-green-200">Normal</span>
+                          <span className="text-yellow-200">Overweight</span>
+                          <span className="text-red-200">Obese</span>
+                        </div>
+                      </div>
                     </div>
                   )}
                 </div>
