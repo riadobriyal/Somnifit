@@ -36,13 +36,16 @@ def sleep_prediction():
 @app.route("/activity_predictor",methods=['POST'])
 def activity_prediction():
     data = request.get_json()
-
     weight = float(data.get('weight'))
     height = float(data.get('height'))
     BMI = float(data.get('BMI'))
     age = float(data.get('age'))
     gender = data.get('gender')
     BMI_Case = data.get('BMI_Case')
+
+    BMI_Case = 'sever thinness' if BMI_Case == 'severe thinness' else BMI_Case
+    BMI_Case = 'obese' if BMI_Case == 'obesity' else BMI_Case
+    BMI_Case = 'severe obese' if BMI_Case == 'severe obesity' else BMI_Case
 
     input_data = np.array([[weight,height,BMI,gender,age,BMI_Case]])
     prediction = log_model.predict(activity_transformer.transform(input_data))

@@ -52,6 +52,8 @@ function SleepTracker() {
       }
       
       const data = await res.json()
+      data.sleep_efficiency = Math.max(data.sleep_efficiency,0)
+      data.sleep_efficiency = Math.min(data.sleep_efficiency,100)
       setSleepEfficiency(data.sleep_efficiency)
       setShowDashboard(true)
       

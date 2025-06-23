@@ -11,7 +11,8 @@ function FitnessTracker() {
     gender: 'Male',
     weight: '',
     height: '',
-    activityLevel: 'Sedentary',
+    bmi: '',
+    bmi_class: '',
     workoutDuration: '',
     caloriesBurned: '',
     steps: '',
@@ -33,8 +34,7 @@ function FitnessTracker() {
     try {
       setFitnessScore(0);
       
-      // Call your fitness prediction API here
-      const res = await fetch('http://localhost:5000/fitness_predictor', {
+      const res = await fetch('http://localhost:5000/activity_predictor', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -43,8 +43,9 @@ function FitnessTracker() {
           age: formData.age,
           gender: formData.gender,
           weight: formData.weight,
-          height: formData.height,
-          activity_level: formData.activityLevel,
+          height: parseFloat(formData.height)/100,
+          'BMI': formData.bmi,
+          'BMI_Case': formData.bmi_class.toLowerCase(),
           workout_duration: formData.workoutDuration,
           calories_burned: formData.caloriesBurned,
           steps: formData.steps,
@@ -58,7 +59,8 @@ function FitnessTracker() {
       }
       
       const data = await res.json();
-      setFitnessScore(data.fitness_score);
+      setFitnessScore(data['Exercise Recommendation Plan']);
+      console.log(fitnessScore)
       setShowDashboard(true);
       
       setTimeout(() => {
@@ -88,11 +90,22 @@ function FitnessTracker() {
     if (h > 0 && w > 0) {
       const bmiValue = w / (h * h);
       let category = '';
-      if (bmiValue < 18.5) category = 'Underweight';
-      else if (bmiValue < 25) category = 'Normal';
-      else if (bmiValue < 30) category = 'Overweight';
-      else category = 'Obese';
+      if (bmiValue < 16) category = 'Severe Thinness';
+      else if (bmiValue >= 16 && bmiValue < 17) category = 'Moderate Thinness';
+      else if (bmiValue >= 17 && bmiValue < 18.5) category = 'Mild Thinness';
+      else if (bmiValue >= 18.5 && bmiValue < 25) category = 'Normal';
+      else if (bmiValue >= 25 && bmiValue < 30) category = 'Over Weight';
+      else if (bmiValue >= 30 && bmiValue < 35) category = 'Obesity';
+      else category = 'Severe Obesity';
       setBmiResult({ value: bmiValue.toFixed(1), category });
+      
+      setFormData({
+        ...formData,
+        weight: bmiWeight,
+        height: bmiHeight,
+        bmi: bmiValue.toFixed(1),
+        bmi_class: category
+      });
     }
   }
 
@@ -186,9 +199,99 @@ function FitnessTracker() {
         </div>
       </div>
       <main className="mx-auto py-16 w-full bg-gradient-to-b from-orange-400 to-yellow-300">
-        <div id="fitness-form" className="max-w-4xl mx-auto space-y-12">
+        <div className="max-w-4xl mx-auto space-y-12">
           <div className="text-center space-y-4">
             <h2 className="text-5xl font-bold text-[#C6E0FF]">
+              Calculate your BMI
+            </h2>
+            <p className="text-lg text-[#C6E0FF]/80">
+              Discover your body mass index and take the first step towards a healthier you
+            </p>
+            <form className="bg-white/5 backdrop-blur-md p-8 rounded-3xl border border-[#FFD580]/20 shadow-xl">
+              <h3 className="text-2xl font-semibold text-white mb-6 text-center">BMI Calculator</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
+                <div>
+                  <label className="block text-white text-sm font-medium mb-2">Weight (kg)</label>
+                  <input
+                    type="number"
+                    step="0.1"
+                    value={bmiWeight}
+                    onChange={e => setBmiWeight(e.target.value)}
+                    className="w-full bg-[#D44C2E]/10 border border-[#F7E987]/30 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-[#F7E987] focus:border-transparent transition-all"
+                  />
+                </div>
+                <div>
+                  <label className="block text-white text-sm font-medium mb-2">Height (cm)</label>
+                  <input
+                    type="number"
+                    step="0.1"
+                    value={bmiHeight}
+                    onChange={e => setBmiHeight(e.target.value)}
+                    className="w-full bg-[#D44C2E]/10 border border-[#F7E987]/30 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-[#F7E987] focus:border-transparent transition-all"
+                  />
+                </div>
+              </div>
+              
+              <div className="flex justify-center mb-6">
+                <button
+                  type="button"
+                  onClick={handleBmiCalculate}
+                  className="bg-orange-500 text-white font-semibold py-4 px-8 rounded-xl hover:bg-orange-600 transition-all duration-200 shadow-lg"
+                >
+                  Calculate BMI
+                </button>
+              </div>
+
+              {bmiResult && (
+                <div className="text-center w-full">
+                  <div className="text-2xl font-bold text-orange-700 mb-2">Your BMI: {bmiResult.value}</div>
+                  <div className="text-lg text-white mb-6">Category: <span className="font-semibold text-orange-500">{bmiResult.category}</span></div>
+                  
+                  {/* BMI Meter */}
+                  <div className="w-full flex flex-col items-center">
+                    <div className="relative w-full max-w-2xl h-8 rounded-full overflow-hidden bg-gradient-to-r from-blue-600 via-blue-400 via-green-400 via-yellow-400 to-red-500 shadow-inner">
+                      {/* Segments for reference */}
+                      <div className="absolute left-0 top-0 h-full" style={{width: '16%', background: 'rgba(37,99,235,0.3)'}}></div>
+                      <div className="absolute left-[16%] top-0 h-full" style={{width: '2.5%', background: 'rgba(59,130,246,0.3)'}}></div>
+                      <div className="absolute left-[18.5%] top-0 h-full" style={{width: '7%', background: 'rgba(96,165,250,0.3)'}}></div>
+                      <div className="absolute left-[25.5%] top-0 h-full" style={{width: '24.5%', background: 'rgba(34,197,94,0.3)'}}></div>
+                      <div className="absolute left-[50%] top-0 h-full" style={{width: '20%', background: 'rgba(251,191,36,0.3)'}}></div>
+                      <div className="absolute left-[70%] top-0 h-full" style={{width: '17.5%', background: 'rgba(239,68,68,0.3)'}}></div>
+                      <div className="absolute left-[87.5%] top-0 h-full" style={{width: '12.5%', background: 'rgba(185,28,28,0.3)'}}></div>
+                      {/* Pointer */}
+                      {(() => {
+                        const bmi = parseFloat(bmiResult.value);
+                        let left = 0;
+                        if (bmi < 16) left = (bmi / 16) * 16;
+                        else if (bmi < 17) left = ((bmi - 16) / 1 * 2.5 + 16);
+                        else if (bmi < 18.5) left = ((bmi - 17) / 1.5 * 7 + 18.5);
+                        else if (bmi < 25) left = ((bmi - 18.5) / 6.5 * 24.5 + 25.5);
+                        else if (bmi < 30) left = ((bmi - 25) / 5 * 20 + 50);
+                        else if (bmi < 35) left = ((bmi - 30) / 5 * 17.5 + 70);
+                        else left = ((bmi - 35) / 5 * 12.5 + 87.5);
+                        if (left > 100) left = 100;
+                        return (
+                          <div className="absolute top-0" style={{ left: `calc(${left}% - 12px)` }}>
+                            <div className="w-6 h-6 bg-orange-500 rounded-full border-4 border-white shadow-lg -mt-3"></div>
+                            <div className="w-0 h-0 border-l-[10px] border-r-[10px] border-t-[10px] border-l-transparent border-r-transparent border-t-orange-500 mx-auto -mt-1"></div>
+                          </div>
+                        );
+                      })()}
+                    </div>
+                    <div className="flex justify-between w-full max-w-2xl text-sm text-white mt-3">
+                      <span className="text-blue-200">Severe Thin</span>
+                      <span className="text-blue-300">Mod Thin</span>
+                      <span className="text-blue-400">Mild Thin</span>
+                      <span className="text-green-200">Normal</span>
+                      <span className="text-yellow-200">Over Weight</span>
+                      <span className="text-red-200">Obese</span>
+                      <span className="text-red-300">Sev Obese</span>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </form>
+            <h2 id="fitness-form" className="text-5xl font-bold text-[#C6E0FF] mt-36">
               Track Your Fitness
             </h2>
             <p className="text-lg text-[#C6E0FF]/80">
@@ -196,82 +299,6 @@ function FitnessTracker() {
             </p>
           </div>
           <div className="max-w-4xl mx-auto mb-12">
-            <form className="bg-white/5 backdrop-blur-md p-8 rounded-3xl border border-[#FFD580]/20 shadow-xl">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="space-y-6">
-                  <h3 className="text-2xl font-semibold text-white">BMI Calculator</h3>
-                  <div className="space-y-4">
-                    <div>
-                      <label className="block text-white text-sm font-medium mb-2">Weight (kg)</label>
-                      <input
-                        type="number"
-                        step="0.1"
-                        value={bmiWeight}
-                        onChange={e => setBmiWeight(e.target.value)}
-                        className="w-full bg-[#D44C2E]/10 border border-[#F7E987]/30 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-[#F7E987] focus:border-transparent transition-all"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-white text-sm font-medium mb-2">Height (cm)</label>
-                      <input
-                        type="number"
-                        step="0.1"
-                        value={bmiHeight}
-                        onChange={e => setBmiHeight(e.target.value)}
-                        className="w-full bg-[#D44C2E]/10 border border-[#F7E987]/30 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-[#F7E987] focus:border-transparent transition-all"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div className="flex flex-col justify-center items-center">
-                  <button
-                    type="button"
-                    onClick={handleBmiCalculate}
-                    className="w-full bg-orange-500 text-white font-semibold py-4 px-8 rounded-xl hover:bg-orange-600 transition-all duration-200 shadow-lg mt-2"
-                  >
-                    Calculate BMI
-                  </button>
-                  {bmiResult && (
-                    <div className="mt-6 text-center w-full">
-                      <div className="text-2xl font-bold text-orange-700">Your BMI: {bmiResult.value}</div>
-                      <div className="text-lg text-white mt-2">Category: <span className="font-semibold text-orange-500">{bmiResult.category}</span></div>
-                      {/* BMI Meter */}
-                      <div className="mt-6 w-full flex flex-col items-center">
-                        <div className="relative w-full max-w-md h-6 rounded-full overflow-hidden bg-gradient-to-r from-blue-400 via-green-400 via-yellow-400 to-red-500 shadow-inner">
-                          {/* Segments for reference */}
-                          <div className="absolute left-0 top-0 h-full" style={{width: '18.5%', background: 'rgba(59,130,246,0.2)'}}></div>
-                          <div className="absolute left-[18.5%] top-0 h-full" style={{width: '24%', background: 'rgba(34,197,94,0.2)'}}></div>
-                          <div className="absolute left-[42.5%] top-0 h-full" style={{width: '17.5%', background: 'rgba(251,191,36,0.2)'}}></div>
-                          <div className="absolute left-[60%] top-0 h-full" style={{width: '40%', background: 'rgba(239,68,68,0.2)'}}></div>
-                          {/* Pointer */}
-                          {(() => {
-                            const bmi = parseFloat(bmiResult.value);
-                            let left = 0;
-                            if (bmi < 18.5) left = (bmi / 40) * 100;
-                            else if (bmi < 25) left = ((bmi - 18.5) / (25 - 18.5) * 24 + 18.5) / 40 * 100;
-                            else if (bmi < 30) left = ((bmi - 25) / (30 - 25) * 17.5 + 42.5) / 100 * 100;
-                            else left = ((bmi - 30) / (40 - 30) * 40 + 60) / 100 * 100;
-                            if (left > 100) left = 100;
-                            return (
-                              <div className="absolute top-0" style={{ left: `calc(${left}% - 10px)` }}>
-                                <div className="w-5 h-5 bg-orange-500 rounded-full border-4 border-white shadow-lg -mt-2"></div>
-                                <div className="w-0 h-0 border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-orange-500 mx-auto -mt-1"></div>
-                              </div>
-                            );
-                          })()}
-                        </div>
-                        <div className="flex justify-between w-full max-w-md text-xs text-white mt-2">
-                          <span className="text-blue-200">Underweight</span>
-                          <span className="text-green-200">Normal</span>
-                          <span className="text-yellow-200">Overweight</span>
-                          <span className="text-red-200">Obese</span>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </form>
           </div>
           <form className="bg-white/5 backdrop-blur-md p-8 rounded-3xl border border-[#FFD580]/20 shadow-xl">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -353,25 +380,56 @@ function FitnessTracker() {
                     {/* Weight Class */}
                     <div>
                       <label className="block text-white text-sm font-medium mb-2">Weight Class</label>
-                      <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                        {['mild thinness', 'overweight', 'normal', 'obese', 'severe obese', 'severe thinness', 'moderate thinness'].map((weightClass) => (
+                      <div className="space-y-3">
+                        <div className="grid grid-cols-3 gap-3">
+                          {['Severe Thinness', 'Moderate Thinness', 'Mild Thinness'].map((bmi_class) => (
+                            <button
+                              key={bmi_class}
+                              type="button"
+                              onClick={() => setFormData({...formData, bmi_class})}
+                              className={`px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 border-2 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent ${
+                                formData.bmi_class === bmi_class
+                                  ? 'bg-orange-500 text-white border-orange-500 shadow-lg'
+                                  : 'bg-white text-orange-500 border-orange-400 hover:bg-orange-100'
+                              }`}
+                            >
+                              {bmi_class}
+                            </button>
+                          ))}
+                        </div>
+                        <div className="grid grid-cols-1">
                           <button
-                            key={weightClass}
                             type="button"
-                            onClick={() => setFormData({...formData, activityLevel: weightClass})}
+                            onClick={() => setFormData({...formData, bmi_class: 'Normal'})}
                             className={`px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 border-2 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent ${
-                              formData.activityLevel === weightClass
+                              formData.bmi_class === 'Normal'
                                 ? 'bg-orange-500 text-white border-orange-500 shadow-lg'
                                 : 'bg-white text-orange-500 border-orange-400 hover:bg-orange-100'
                             }`}
                           >
-                            {weightClass}
+                            Normal
                           </button>
-                        ))}
+                        </div>
+                        <div className="grid grid-cols-3 gap-3">
+                          {['Over Weight', 'Obesity', 'Severe Obesity'].map((bmi_class) => (
+                            <button
+                              key={bmi_class}
+                              type="button"
+                              onClick={() => setFormData({...formData, bmi_class})}
+                              className={`px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 border-2 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent ${
+                                formData.bmi_class === bmi_class
+                                  ? 'bg-orange-500 text-white border-orange-500 shadow-lg'
+                                  : 'bg-white text-orange-500 border-orange-400 hover:bg-orange-100'
+                              }`}
+                            >
+                              {bmi_class}
+                            </button>
+                          ))}
+                        </div>
                       </div>
                     </div>
                     {/* Workout Duration */}
-                    <div>
+                    <div className="mt-11.5">
                       <label className="block text-white text-sm font-medium mb-2">Workout Duration (minutes)</label>
                       <input
                         type="number"
@@ -382,6 +440,16 @@ function FitnessTracker() {
                     </div>
                   </div>
                   <div className="space-y-4">
+                    {/* BMI */}
+                    <div>
+                      <label className="block text-white text-sm font-medium mb-2">Body Mass Index</label>
+                      <input
+                        type="number"
+                        value={formData.bmi}
+                        onChange={(e) => setFormData({...formData, bmi: e.target.value})}
+                        className="w-full bg-[#D44C2E]/10 border border-[#F7E987]/30 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-[#F7E987] focus:border-transparent transition-all"
+                      />
+                    </div>
                     {/* Calories Burned */}
                     <div>
                       <label className="block text-white text-sm font-medium mb-2">Calories Burned</label>
