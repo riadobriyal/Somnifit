@@ -108,9 +108,9 @@ function FitnessTracker() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full bg-gradient-to-b from-yellow-300 to-orange-400 px-6 md:px-20 py-16">
         {/* Card 1 */}
         <div className="group relative transform hover:-translate-y-2 transition-all duration-300 h-full">
-          <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl opacity-30 group-hover:opacity-50 blur transition duration-300 "></div>
+          <div className="absolute -inset-0.5 bg-gradient-to-r from-orange-400 to-yellow-300 rounded-2xl opacity-30 group-hover:opacity-50 blur transition duration-300"></div>
           <div className="relative bg-white/30 backdrop-blur-xl rounded-2xl p-6 border border-white/20 shadow-xl overflow-hidden h-full">
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-600/10 rounded-2xl"></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-orange-400/10 to-yellow-300/10 rounded-2xl"></div>
             <div className="relative h-full flex flex-col">
               <div className="overflow-hidden rounded-lg">
                 <img 
@@ -119,8 +119,8 @@ function FitnessTracker() {
                   alt="Fitness Tracking Animation"
                 />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-4 mt-6">Activity Tracking</h3>
-              <p className="text-white/90 text-lg flex-1">
+              <h3 className="text-2xl font-bold text-black mb-4 mt-6">Activity Tracking</h3>
+              <p className="text-black text-lg flex-1">
                 Track your daily activities, workouts, and progress. Our AI-powered system monitors your fitness metrics and provides real-time insights to help you achieve your goals.
               </p>
             </div>
@@ -128,9 +128,9 @@ function FitnessTracker() {
         </div>
         {/* Card 2 */}
         <div className="group relative transform hover:-translate-y-2 transition-all duration-300 h-full">
-          <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-500 to-blue-500 rounded-2xl opacity-30 group-hover:opacity-50 blur transition duration-300"></div>
+          <div className="absolute -inset-0.5 bg-gradient-to-r from-yellow-300 to-orange-400 rounded-2xl opacity-30 group-hover:opacity-50 blur transition duration-300"></div>
           <div className="relative bg-white/30 backdrop-blur-xl rounded-2xl p-6 border border-white/20 shadow-xl overflow-hidden h-full">
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-blue-600/10 rounded-2xl"></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-yellow-300/10 to-orange-400/10 rounded-2xl"></div>
             <div className="relative h-full flex flex-col">
               <div className="overflow-hidden rounded-lg">
                 <img 
@@ -139,8 +139,8 @@ function FitnessTracker() {
                   alt="Fitness Analytics Animation"
                 />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-4 mt-6">Smart Analytics</h3>
-              <p className="text-white/90 text-lg flex-1">
+              <h3 className="text-2xl font-bold text-black mb-4 mt-6">Smart Analytics</h3>
+              <p className="text-black text-lg flex-1">
                 Get detailed insights into your workout performance, calorie burn, and progress over time. Our machine learning algorithms help you understand your fitness patterns and optimize your routine.
               </p>
             </div>
@@ -148,9 +148,9 @@ function FitnessTracker() {
         </div>
         {/* Card 3 */}
         <div className="group relative transform hover:-translate-y-2 transition-all duration-300 h-full">
-          <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl opacity-30 group-hover:opacity-50 blur transition duration-300"></div>
+          <div className="absolute -inset-0.5 bg-gradient-to-r from-orange-400 to-yellow-300 rounded-2xl opacity-30 group-hover:opacity-50 blur transition duration-300"></div>
           <div className="relative bg-white/30 backdrop-blur-xl rounded-2xl p-6 border border-white/20 shadow-xl overflow-hidden h-full">
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-600/10 rounded-2xl"></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-orange-400/10 to-yellow-300/10 rounded-2xl"></div>
             <div className="relative h-full flex flex-col">
               <div className="overflow-hidden rounded-lg">
                 <img 
@@ -159,8 +159,8 @@ function FitnessTracker() {
                   alt="Workout Tips Animation"
                 />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-4 mt-6">Personalized Tips</h3>
-              <p className="text-white/90 text-lg flex-1">
+              <h3 className="text-2xl font-bold text-black mb-4 mt-6">Personalized Tips</h3>
+              <p className="text-black text-lg flex-1">
                 Receive customized workout recommendations and tips based on your performance and goals. Our AI learns from your fitness data to provide the most effective guidance for you.
               </p>
             </div>
@@ -177,7 +177,7 @@ function FitnessTracker() {
               Monitor your workout and activity metrics for better health
             </p>
           </div>
-          <form className="bg-white/5 backdrop-blur-md p-8 rounded-3xl border border-[#C6E0FF]/20 shadow-xl">
+          <form className="bg-white/5 backdrop-blur-md p-8 rounded-3xl border border-[#FFD580]/20 shadow-xl">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="space-y-6">
                 <h3 className="text-2xl font-semibold text-white">Personal Details</h3>
@@ -257,17 +257,22 @@ function FitnessTracker() {
                     {/* Activity Level */}
                     <div>
                       <label className="block text-white text-sm font-medium mb-2">Activity Level</label>
-                      <select
-                        value={formData.activityLevel}
-                        onChange={(e) => setFormData({...formData, activityLevel: e.target.value})}
-                        className="w-full bg-[#D44C2E]/10 border border-[#F7E987]/30 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-[#F7E987] focus:border-transparent transition-all"
-                      >
-                        <option value="Sedentary">Sedentary</option>
-                        <option value="Light">Lightly Active</option>
-                        <option value="Moderate">Moderately Active</option>
-                        <option value="Very">Very Active</option>
-                        <option value="Extra">Extra Active</option>
-                      </select>
+                      <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                        {['Sedentary', 'Lightly Active', 'Moderately Active', 'Very Active', 'Extra Active'].map((level) => (
+                          <button
+                            key={level}
+                            type="button"
+                            onClick={() => setFormData({...formData, activityLevel: level})}
+                            className={`px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 border-2 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent ${
+                              formData.activityLevel === level
+                                ? 'bg-orange-500 text-white border-orange-500 shadow-lg'
+                                : 'bg-white text-orange-500 border-orange-400 hover:bg-orange-100'
+                            }`}
+                          >
+                            {level}
+                          </button>
+                        ))}
+                      </div>
                     </div>
                     {/* Workout Duration */}
                     <div>
