@@ -81,7 +81,7 @@ function FitnessTracker() {
 
   return (
     <>
-      <div className="min-h-screen w-full flex flex-col bg-gradient-to-b from-purple-700 to-[#191970]">
+      <div className="min-h-screen w-full flex flex-col bg-gradient-to-b from-orange-400 to-yellow-300">
         <div className="p-6">
           <Link
             to="/"
@@ -106,7 +106,7 @@ function FitnessTracker() {
           </button>
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full bg-gradient-to-b from-[#191970] to-purple-700 px-6 md:px-20 py-16">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full bg-gradient-to-b from-yellow-300 to-orange-400 px-6 md:px-20 py-16">
         {/* Card 1 */}
         <div className="group relative transform hover:-translate-y-2 transition-all duration-300 h-full">
           <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl opacity-30 group-hover:opacity-50 blur transition duration-300 "></div>
@@ -168,7 +168,7 @@ function FitnessTracker() {
           </div>
         </div>
       </div>
-      <main className="mx-auto py-16 w-full bg-gradient-to-b from-purple-700 to-[#191970]">
+      <main className="mx-auto py-16 w-full bg-gradient-to-b from-orange-400 to-yellow-300">
         <div id="fitness-form" className="max-w-4xl mx-auto space-y-12">
           <div className="text-center space-y-4">
             <h2 className="text-5xl font-bold text-[#C6E0FF]">
@@ -323,7 +323,7 @@ function FitnessTracker() {
       </main>
       {/* Fitness Dashboard */}
       {showDashboard && (
-        <div className="py-16 w-full bg-gradient-to-b from-[#191970] to-purple-700">
+        <div className="py-16 w-full bg-gradient-to-b from-yellow-300 to-orange-400">
           <div id="dashboard" className="max-w-7xl mx-auto px-4">
             <h2 className="text-4xl font-bold text-white mb-8 text-center">Your Fitness Analytics</h2>
             
