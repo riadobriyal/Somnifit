@@ -132,7 +132,7 @@ function FitnessTracker() {
             <div className="relative h-full flex flex-col">
               <div className="overflow-hidden rounded-lg">
                 <img 
-                  src="https://cdn.dribbble.com/users/1162077/screenshots/4382010/media/b24709557db701ebffa4bd90d26c30c4.gif" 
+                  src="https://cdn.dribbble.com/userupload/42160418/file/original-f46d1dbb1dc9892110a9b9d4916875ed.gif" 
                   className="w-full h-48 object-cover transform group-hover:scale-110 transition-all duration-700"
                   alt="Fitness Tracking Animation"
                 />
