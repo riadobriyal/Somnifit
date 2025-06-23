@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { StarField } from "./Home";
 
 function FitnessTracker() {
   const [showTip, setShowTip] = useState(false);
@@ -91,7 +90,7 @@ function FitnessTracker() {
           </Link>
         </div>
         <div className="flex-1 flex flex-col items-center justify-center px-4">
-          <StarField />
+          {/* StarField removed */}
           <h1 className="text-6xl md:text-8xl font-extrabold text-white text-center mb-8 tracking-tight">
             Enhance your fitness
           </h1>
@@ -100,7 +99,7 @@ function FitnessTracker() {
           </p>
           <button 
             onClick={scrollToForm}
-            className="mt-12 px-8 py-4 bg-purple-500 hover:bg-purple-400 text-white font-semibold rounded-lg text-lg transition-colors"
+            className="mt-12 px-8 py-4 bg-orange-500 hover:bg-orange-400 text-white font-semibold rounded-lg text-lg transition-colors"
           >
             Get Started
           </button>
@@ -197,20 +196,28 @@ function FitnessTracker() {
                   <div>
                     <label className="block text-white text-sm font-medium mb-3">Gender</label>
                     <div className="grid grid-cols-2 gap-3">
-                      {['Male', 'Female'].map((gender) => (
-                        <button
-                          key={gender}
-                          type="button"
-                          onClick={() => setFormData({...formData, gender})}
-                          className={`px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 ${
-                            formData.gender === gender
-                              ? 'bg-[#3A6EA5] text-white shadow-lg shadow-[#3A6EA5]/30'
-                              : 'bg-[#000B18]/30 text-[#C6E0FF] hover:bg-[#004E98]/40'
-                          }`}
-                        >
-                          {gender}
-                        </button>
-                      ))}
+                      <button
+                        type="button"
+                        onClick={() => setFormData({...formData, gender: 'Male'})}
+                        className={`px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 border-2 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent ${
+                          formData.gender === 'Male'
+                            ? 'bg-orange-500 text-white border-orange-500 shadow-lg'
+                            : 'bg-white text-orange-500 border-orange-400 hover:bg-orange-100'
+                        }`}
+                      >
+                        Male
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setFormData({...formData, gender: 'Female'})}
+                        className={`px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 border-2 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent ${
+                          formData.gender === 'Female'
+                            ? 'bg-orange-500 text-white border-orange-500 shadow-lg'
+                            : 'bg-white text-orange-500 border-orange-400 hover:bg-orange-100'
+                        }`}
+                      >
+                        Female
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -314,9 +321,9 @@ function FitnessTracker() {
                 e.preventDefault();
                 fetchFitness();
               }}
-              className="w-full mt-10 bg-gradient-to-r from-[#004E98] to-[#3A6EA5] text-white font-medium py-4 px-8 rounded-xl hover:from-[#003E78] hover:to-[#2A5E95] transition-all duration-200 shadow-lg"
+              className="w-full mt-10 bg-orange-500 hover:bg-orange-400 text-white font-medium py-4 px-8 rounded-xl transition-all duration-200 shadow-lg"
             >
-              Analyze Fitness Metrics
+              Track My Fitness
             </button>
           </form>
         </div>
