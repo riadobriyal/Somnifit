@@ -347,25 +347,25 @@ function FitnessTracker() {
               </div>
               {/* Activity Metrics Section */}
               <div className="space-y-6 md:col-span-2">
-                <h3 className="text-2xl font-semibold text-center text-white">Activity Metrics</h3>
+                <h3 className="text-2xl font-semibold text-center text-white">Weight Class</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-4">
-                    {/* Activity Level */}
+                    {/* Weight Class */}
                     <div>
-                      <label className="block text-white text-sm font-medium mb-2">Activity Level</label>
+                      <label className="block text-white text-sm font-medium mb-2">Weight Class</label>
                       <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                        {['Sedentary', 'Lightly Active', 'Moderately Active', 'Very Active', 'Extra Active'].map((level) => (
+                        {['mild thinness', 'overweight', 'normal', 'obese', 'severe obese', 'severe thinness', 'moderate thinness'].map((weightClass) => (
                           <button
-                            key={level}
+                            key={weightClass}
                             type="button"
-                            onClick={() => setFormData({...formData, activityLevel: level})}
+                            onClick={() => setFormData({...formData, activityLevel: weightClass})}
                             className={`px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 border-2 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent ${
-                              formData.activityLevel === level
+                              formData.activityLevel === weightClass
                                 ? 'bg-orange-500 text-white border-orange-500 shadow-lg'
                                 : 'bg-white text-orange-500 border-orange-400 hover:bg-orange-100'
                             }`}
                           >
-                            {level}
+                            {weightClass}
                           </button>
                         ))}
                       </div>
