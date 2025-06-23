@@ -18,6 +18,9 @@ function FitnessTracker() {
     heartRate: '',
     workoutIntensity: 'Moderate'
   });
+  const [bmiWeight, setBmiWeight] = useState('');
+  const [bmiHeight, setBmiHeight] = useState('');
+  const [bmiResult, setBmiResult] = useState(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -77,6 +80,21 @@ function FitnessTracker() {
       formElement.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+  function handleBmiCalculate() {
+    if (!bmiWeight || !bmiHeight) return;
+    const h = parseFloat(bmiHeight) / 100;
+    const w = parseFloat(bmiWeight);
+    if (h > 0 && w > 0) {
+      const bmiValue = w / (h * h);
+      let category = '';
+      if (bmiValue < 18.5) category = 'Underweight';
+      else if (bmiValue < 25) category = 'Normal';
+      else if (bmiValue < 30) category = 'Overweight';
+      else category = 'Obese';
+      setBmiResult({ value: bmiValue.toFixed(1), category });
+    }
+  }
 
   return (
     <>
@@ -176,6 +194,52 @@ function FitnessTracker() {
             <p className="text-lg text-[#C6E0FF]/80">
               Monitor your workout and activity metrics for better health
             </p>
+          </div>
+          <div className="max-w-4xl mx-auto mb-12">
+            <form className="bg-white/5 backdrop-blur-md p-8 rounded-3xl border border-[#FFD580]/20 shadow-xl">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="space-y-6">
+                  <h3 className="text-2xl font-semibold text-white">BMI Calculator</h3>
+                  <div className="space-y-4">
+                    <div>
+                      <label className="block text-white text-sm font-medium mb-2">Weight (kg)</label>
+                      <input
+                        type="number"
+                        step="0.1"
+                        value={bmiWeight}
+                        onChange={e => setBmiWeight(e.target.value)}
+                        className="w-full bg-[#D44C2E]/10 border border-[#F7E987]/30 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-[#F7E987] focus:border-transparent transition-all"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-white text-sm font-medium mb-2">Height (cm)</label>
+                      <input
+                        type="number"
+                        step="0.1"
+                        value={bmiHeight}
+                        onChange={e => setBmiHeight(e.target.value)}
+                        className="w-full bg-[#D44C2E]/10 border border-[#F7E987]/30 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-[#F7E987] focus:border-transparent transition-all"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="flex flex-col justify-center items-center">
+                  <button
+                    type="button"
+                    onClick={handleBmiCalculate}
+                    className="w-full bg-orange-500 text-white font-semibold py-4 px-8 rounded-xl hover:bg-orange-600 transition-all duration-200 shadow-lg mt-2"
+                  >
+                    Calculate BMI
+                  </button>
+                  {bmiResult && (
+                    <div className="mt-6 text-center">
+                      <div className="text-2xl font-bold text-orange-700">Your BMI: {bmiResult.value}</div>
+                      <div className="text-lg text-white mt-2">Category: <span className="font-semibold text-orange-500">{bmiResult.category}</span></div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </form>
           </div>
           <form className="bg-white/5 backdrop-blur-md p-8 rounded-3xl border border-[#FFD580]/20 shadow-xl">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
