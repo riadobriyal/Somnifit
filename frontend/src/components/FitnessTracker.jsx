@@ -152,7 +152,7 @@ function FitnessTracker() {
             <div className="relative h-full flex flex-col">
               <div className="overflow-hidden rounded-lg">
                 <img 
-                  src="https://i.pinimg.com/originals/1b/56/4e/1b564ee90d2646b3038ee42be6b3c56b.gif" 
+                  src="https://cdn.dribbble.com/userupload/21210735/file/original-f7ebdf65860bfbfd73e5355d596ccf06.gif" 
                   className="w-full h-48 object-cover transform group-hover:scale-110 transition-all duration-700"
                   alt="Fitness Analytics Animation"
                 />
@@ -172,7 +172,7 @@ function FitnessTracker() {
             <div className="relative h-full flex flex-col">
               <div className="overflow-hidden rounded-lg">
                 <img 
-                  src="https://cdn.dribbble.com/users/1787323/screenshots/6604852/dribbbe_1.gif" 
+                  src="https://media.tenor.com/lwADcDkltwIAAAAM/cutetip.gif" 
                   className="w-full h-48 object-cover transform group-hover:scale-110 transition-all duration-700"
                   alt="Workout Tips Animation"
                 />
