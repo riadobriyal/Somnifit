@@ -109,39 +109,17 @@ function FitnessTracker() {
     }
   }
 
-  // Animated SomniFit Logo Component
-  function SomniFitLogo() {
-    return (
-      <div className="flex items-center space-x-3 select-none">
-        {/* Animated Moon */}
-        <div className="relative">
-          <div className="w-10 h-10 bg-gradient-to-br from-yellow-200 via-yellow-300 to-orange-300 rounded-full shadow-lg animate-bounce-slow flex items-center justify-center">
-            <div className="absolute w-6 h-6 bg-white/40 rounded-full left-1 top-1 blur-sm animate-pulse"></div>
-            {/* Crescent effect */}
-            <div className="absolute w-8 h-8 bg-gradient-to-br from-yellow-100 to-transparent rounded-full left-3 top-2 opacity-60"></div>
-          </div>
-          {/* Sparkling Stars */}
-          <div className="absolute -top-2 -left-2 w-2 h-2 bg-white rounded-full opacity-80 animate-twinkle"></div>
-          <div className="absolute -top-3 left-7 w-1.5 h-1.5 bg-white rounded-full opacity-60 animate-twinkle delay-200"></div>
-          <div className="absolute top-8 left-8 w-1 h-1 bg-white rounded-full opacity-70 animate-twinkle delay-500"></div>
-        </div>
-        {/* SomniFit Text */}
-        <span className="text-3xl md:text-4xl font-extrabold bg-gradient-to-r from-orange-400 via-yellow-300 to-yellow-500 bg-clip-text text-transparent drop-shadow-lg animate-gradient-move">
-          SomniFit
-        </span>
-      </div>
-    );
-  }
-
   return (
     <>
       <div className="min-h-screen w-full flex flex-col bg-gradient-to-b from-orange-400 to-yellow-300">
         <div className="p-6">
           <Link
             to="/"
-            className="text-3xl font-bold text-white tracking-wide hover:text-purple-200 transition-colors"
+            className="text-3xl font-bold text-white tracking-wide hover:text-orange-300 transition-colors"
           >
-            <SomniFitLogo />
+            <span className="text-3xl md:text-4xl font-extrabold text-white drop-shadow-lg">
+              SomniFit
+            </span>
           </Link>
         </div>
         <div className="flex-1 flex flex-col items-center justify-center px-4">
