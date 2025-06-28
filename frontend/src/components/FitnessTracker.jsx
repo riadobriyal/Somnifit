@@ -109,6 +109,16 @@ function FitnessTracker() {
     }
   }
 
+  const exercise_plans = [
+    'Introductory Light Activity','Ideal for beginners or individuals with higher body fat percentages. Focuses on gentle cardio like walking, stationary cycling or light swimming (30 minutes, 3–4× per week), combined with basic mobility and stretching. This plan emphasizes building consistency, improving joint flexibility, and kick‑starting metabolism with minimal strain.',
+    'Foundational Conditioning','Still beginner‑focused but with slightly increased intensity. Includes moderate walking/jogging intervals (20/10 min mix), simple body‑weight exercises like squats, wall push‑ups, and hip bridges, 3–4× per week. Targets improved muscular endurance and steady-state fat burn, laying a foundation for more complex routines later.',
+    'Strength & Moderate Cardio Blend','A balanced plan combining resistance and cardio. Structured around 3 full-body strength sessions per week (e.g., lunges, push-ups, rows using light dumbbells or bands) plus 2 days of moderate cardio (30–40 minutes). Adds core stability drills and dynamic stretches. Builds muscular strength while maintaining cardiovascular gains.',
+    'Frequency & Volume Increase','For those with some baseline fitness and moderate BMI/BFP. Training rises to 5–6 days per week: 4 days of split resistance training (upper/lower body alternated) with moderate weights for 3–4 sets of 8–12 reps, plus 1–2 dedicated cardio or HIIT sessions (20–25 minutes). Includes active recovery and mobility work to boost performance and recovery.',
+    'Targeted Fat-Loss Emphasis','Designed to optimize fat reduction. Strength workouts continue 4× weekly focusing on compound movements, paired with 3 HIIT sessions (15–20 minutes) or moderate steady-state cardio (45–60 minutes). Nutrition advice typically complements training: calorie deficit, high-quality protein intake, and recovery monitoring to prevent overtraining.',
+    'Hypertrophy & Muscle Toning','Aimed at building lean muscle and definition. Resistance training 5 days a week targeting specific muscle groups (e.g., chest/back/arms/legs/core) with moderate‑heavy loads for 3–5 sets of 8–15 reps. Two weekly cardio/conditioning sessions maintain cardiovascular health. Mobility, foam rolling, and flexibility work are built in to enhance performance and reduce injury risk.',
+    'Advanced Athletic Conditioning','For individuals with lower BMI/BFP and strong fitness foundations. Highly structured plan featuring 5 resistance sessions (with periodized intensity: heavy, moderate, light days), 2 HIIT/cardio sessions, and supplemental agility/power/core drills. Includes advanced techniques (supersets, plyometrics), recovery strategies (sleep tracking, deload cycles), and goal-specific refinements (e.g., endurance, strength, physique).'
+  ]
+
   return (
     <>
       <div className="min-h-screen w-full flex flex-col bg-gradient-to-b from-orange-400 to-yellow-300">
@@ -117,22 +127,22 @@ function FitnessTracker() {
             to="/"
             className="text-3xl font-bold text-black tracking-wide hover:text-orange-300 transition-colors"
           >
-            <span className="text-3xl md:text-4xl font-extrabold text-black drop-shadow-lg">
+            <span className="text-3xl md:text-4xl font-extrabold text-white drop-shadow-lg">
               SomniFit
             </span>
           </Link>
         </div>
         <div className="flex-1 flex flex-col items-center justify-center px-4">
           {/* StarField removed */}
-          <h1 className="text-6xl md:text-8xl font-extrabold text-black text-center mb-8 tracking-tight">
+          <h1 className="text-6xl md:text-8xl font-extrabold text-white text-center mb-8 tracking-tight">
             Enhance your fitness
           </h1>
-          <p className="text-xl md:text-2xl text-black/80 text-center max-w-2xl">
+          <p className="text-xl md:text-2xl text-white text-center max-w-2xl">
             Track, analyze, and improve your fitness with our AI-powered insights and personalized recommendations.
           </p>
           <button 
             onClick={scrollToForm}
-            className="mt-12 px-8 py-4 bg-orange-500 hover:bg-orange-400 text-black font-semibold rounded-lg text-lg transition-colors"
+            className="mt-12 px-8 py-4 bg-orange-500 hover:bg-orange-400 text-white font-semibold rounded-lg text-lg transition-colors"
           >
             Get Started
           </button>
@@ -305,7 +315,7 @@ function FitnessTracker() {
           <form className="bg-white/5 backdrop-blur-md p-8 rounded-3xl border border-[#FFD580]/20 shadow-xl">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="space-y-6">
-                <h3 className="text-2xl font-semibold text-white">Personal Details</h3>
+                <h3 className="text-2xl font-semibold text-black">Personal Details</h3>
                 <div className="space-y-4">
                   {/* Age Input */}
                   <div>
@@ -508,29 +518,6 @@ function FitnessTracker() {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
               {/* Left Column - Main Stats */}
               <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6">
-                {/* Activity Score */}
-                <div className="bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-[#86C1FF]/30">
-                  <h3 className="text-lg font-semibold text-black mb-4">Activity Score</h3>
-                  <div className="relative pt-1">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-black bg-[#86C1FF]/20">
-                          {fitnessScore}%
-                        </span>
-                      </div>
-                    </div>
-                    <div className="overflow-hidden h-2 mb-4 text-xs flex rounded bg-[#86C1FF]/20 mt-3">
-                      <div
-                        style={{ width: `${fitnessScore}%` }}
-                        className="shadow-none flex flex-col text-center whitespace-nowrap text-black justify-center bg-[#86C1FF]"
-                      ></div>
-                    </div>
-                  </div>
-                  <p className="text-black/60 text-sm">
-                    Your fitness score indicates {fitnessScore < 50 ? 'room for improvement' : 'good progress'}
-                  </p>
-                </div>
-
                 {/* Workout Stats */}
                 <div className="bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-[#86C1FF]/30">
                   <h3 className="text-lg font-semibold text-black mb-4">Today's Activity</h3>
@@ -637,6 +624,19 @@ function FitnessTracker() {
                     )}
                   </div>
                 </div>
+              </div>
+            </div>
+
+            {/* Exercise Plan Recommendation */}
+            <div className="mt-12 bg-white/5 backdrop-blur-xl p-8 rounded-2xl border border-[#86C1FF]/30">
+              <h3 className="text-2xl font-bold text-black mb-6 text-center">Your Personalized Exercise Plan</h3>
+              <div className="text-center">
+                <h4 className="text-xl font-semibold text-orange-600 mb-4">
+                  {exercise_plans[(fitnessScore - 1) * 2] || 'Plan Not Available'}
+                </h4>
+                <p className="text-black text-base leading-relaxed max-w-4xl mx-auto">
+                  {exercise_plans[(fitnessScore - 1) * 2 + 1] || 'Description not available for this plan.'}
+                </p>
               </div>
             </div>
           </div>
