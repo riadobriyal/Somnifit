@@ -241,7 +241,21 @@ function SleepTracker() {
                     <input
                       type="time"
                       value={formData.bedTime}
-                      onChange={(e) => setFormData({...formData, bedTime: e.target.value})}
+                      onChange={(e) => {
+                        const newBedTime = e.target.value;
+                        setFormData((prev) => {
+                          const updated = { ...prev, bedTime: newBedTime };
+                          // Auto-calculate sleep duration if both times are present
+                          if (updated.bedTime && updated.wakeupTime) {
+                            const [bedH, bedM] = updated.bedTime.split(":").map(Number);
+                            const [wakeH, wakeM] = updated.wakeupTime.split(":").map(Number);
+                            let diff = (wakeH * 60 + wakeM) - (bedH * 60 + bedM);
+                            if (diff <= 0) diff += 24 * 60;
+                            updated.sleepDuration = (diff / 60).toFixed(2);
+                          }
+                          return updated;
+                        });
+                      }}
                       className="w-full bg-[#D44C2E]/10 border border-[#F7E987]/30 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-[#F7E987] focus:border-transparent transition-all"
                     />
                   </div>
@@ -251,7 +265,21 @@ function SleepTracker() {
                     <input
                       type="time"
                       value={formData.wakeupTime}
-                      onChange={(e) => setFormData({...formData, wakeupTime: e.target.value})}
+                      onChange={(e) => {
+                        const newWakeupTime = e.target.value;
+                        setFormData((prev) => {
+                          const updated = { ...prev, wakeupTime: newWakeupTime };
+                          // Auto-calculate sleep duration if both times are present
+                          if (updated.bedTime && updated.wakeupTime) {
+                            const [bedH, bedM] = updated.bedTime.split(":").map(Number);
+                            const [wakeH, wakeM] = updated.wakeupTime.split(":").map(Number);
+                            let diff = (wakeH * 60 + wakeM) - (bedH * 60 + bedM);
+                            if (diff <= 0) diff += 24 * 60;
+                            updated.sleepDuration = (diff / 60).toFixed(2);
+                          }
+                          return updated;
+                        });
+                      }}
                       className="w-full bg-[#D44C2E]/10 border border-[#F7E987]/30 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-[#F7E987] focus:border-transparent transition-all"
                     />
                   </div>
@@ -269,6 +297,7 @@ function SleepTracker() {
                       value={formData.sleepDuration}
                       onChange={(e) => setFormData({...formData, sleepDuration: e.target.value})}
                       className="w-full bg-[#D44C2E]/10 border border-[#F7E987]/30 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-[#F7E987] focus:border-transparent transition-all"
+                      readOnly={formData.bedTime && formData.wakeupTime}
                     />
                   </div>
                   

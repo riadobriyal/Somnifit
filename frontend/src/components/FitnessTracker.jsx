@@ -115,24 +115,24 @@ function FitnessTracker() {
         <div className="p-6">
           <Link
             to="/"
-            className="text-3xl font-bold text-white tracking-wide hover:text-orange-300 transition-colors"
+            className="text-3xl font-bold text-black tracking-wide hover:text-orange-300 transition-colors"
           >
-            <span className="text-3xl md:text-4xl font-extrabold text-white drop-shadow-lg">
+            <span className="text-3xl md:text-4xl font-extrabold text-black drop-shadow-lg">
               SomniFit
             </span>
           </Link>
         </div>
         <div className="flex-1 flex flex-col items-center justify-center px-4">
           {/* StarField removed */}
-          <h1 className="text-6xl md:text-8xl font-extrabold text-white text-center mb-8 tracking-tight">
+          <h1 className="text-6xl md:text-8xl font-extrabold text-black text-center mb-8 tracking-tight">
             Enhance your fitness
           </h1>
-          <p className="text-xl md:text-2xl text-white/80 text-center max-w-2xl">
+          <p className="text-xl md:text-2xl text-black/80 text-center max-w-2xl">
             Track, analyze, and improve your fitness with our AI-powered insights and personalized recommendations.
           </p>
           <button 
             onClick={scrollToForm}
-            className="mt-12 px-8 py-4 bg-orange-500 hover:bg-orange-400 text-white font-semibold rounded-lg text-lg transition-colors"
+            className="mt-12 px-8 py-4 bg-orange-500 hover:bg-orange-400 text-black font-semibold rounded-lg text-lg transition-colors"
           >
             Get Started
           </button>
@@ -203,33 +203,33 @@ function FitnessTracker() {
       <main className="mx-auto py-16 w-full bg-gradient-to-b from-orange-400 to-yellow-300">
         <div className="max-w-4xl mx-auto space-y-12">
           <div className="text-center space-y-4">
-            <h2 className="text-5xl font-bold text-[#C6E0FF]">
+            <h2 className="text-5xl font-bold text-black">
               Calculate your BMI
             </h2>
-            <p className="text-lg text-[#C6E0FF]/80">
+            <p className="text-lg text-black/80">
               Discover your body mass index and take the first step towards a healthier you
             </p>
             <form className="bg-white/5 backdrop-blur-md p-8 rounded-3xl border border-[#FFD580]/20 shadow-xl">
-              <h3 className="text-2xl font-semibold text-white mb-6 text-center">BMI Calculator</h3>
+              <h3 className="text-2xl font-semibold text-black mb-6 text-center">BMI Calculator</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
                 <div>
-                  <label className="block text-white text-sm font-medium mb-2">Weight (kg)</label>
+                  <label className="block text-black text-sm font-medium mb-2">Weight (kg)</label>
                   <input
                     type="number"
                     step="0.1"
                     value={bmiWeight}
                     onChange={e => setBmiWeight(e.target.value)}
-                    className="w-full bg-[#D44C2E]/10 border border-[#F7E987]/30 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-[#F7E987] focus:border-transparent transition-all"
+                    className="w-full bg-[#D44C2E]/10 border border-[#F7E987]/30 rounded-xl px-4 py-3 text-black focus:ring-2 focus:ring-[#F7E987] focus:border-transparent transition-all"
                   />
                 </div>
                 <div>
-                  <label className="block text-white text-sm font-medium mb-2">Height (cm)</label>
+                  <label className="block text-black text-sm font-medium mb-2">Height (cm)</label>
                   <input
                     type="number"
                     step="0.1"
                     value={bmiHeight}
                     onChange={e => setBmiHeight(e.target.value)}
-                    className="w-full bg-[#D44C2E]/10 border border-[#F7E987]/30 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-[#F7E987] focus:border-transparent transition-all"
+                    className="w-full bg-[#D44C2E]/10 border border-[#F7E987]/30 rounded-xl px-4 py-3 text-black focus:ring-2 focus:ring-[#F7E987] focus:border-transparent transition-all"
                   />
                 </div>
               </div>
@@ -238,7 +238,7 @@ function FitnessTracker() {
                 <button
                   type="button"
                   onClick={handleBmiCalculate}
-                  className="bg-orange-500 text-white font-semibold py-4 px-8 rounded-xl hover:bg-orange-600 transition-all duration-200 shadow-lg"
+                  className="bg-orange-500 text-black font-semibold py-4 px-8 rounded-xl hover:bg-orange-600 transition-all duration-200 shadow-lg"
                 >
                   Calculate BMI
                 </button>
@@ -247,7 +247,7 @@ function FitnessTracker() {
               {bmiResult && (
                 <div className="text-center w-full">
                   <div className="text-2xl font-bold text-orange-700 mb-2">Your BMI: {bmiResult.value}</div>
-                  <div className="text-lg text-white mb-6">Category: <span className="font-semibold text-orange-500">{bmiResult.category}</span></div>
+                  <div className="text-lg text-black mb-6">Category: <span className="font-semibold text-orange-500">{bmiResult.category}</span></div>
                   
                   {/* BMI Meter */}
                   <div className="w-full flex flex-col items-center">
@@ -280,23 +280,23 @@ function FitnessTracker() {
                         );
                       })()}
                     </div>
-                    <div className="flex justify-between w-full max-w-2xl text-sm text-white mt-3">
-                      <span className="text-blue-200">Severe Thin</span>
-                      <span className="text-blue-300">Mod Thin</span>
-                      <span className="text-blue-400">Mild Thin</span>
-                      <span className="text-green-200">Normal</span>
-                      <span className="text-yellow-200">Over Weight</span>
-                      <span className="text-red-200">Obese</span>
-                      <span className="text-red-300">Sev Obese</span>
+                    <div className="flex justify-between w-full max-w-2xl text-sm text-black mt-3">
+                      <span className="text-blue-800">Severe Thin</span>
+                      <span className="text-blue-900">Mod Thin</span>
+                      <span className="text-blue-900">Mild Thin</span>
+                      <span className="text-green-900">Normal</span>
+                      <span className="text-yellow-900">Over Weight</span>
+                      <span className="text-red-900">Obese</span>
+                      <span className="text-red-900">Sev Obese</span>
                     </div>
                   </div>
                 </div>
               )}
             </form>
-            <h2 id="fitness-form" className="text-5xl font-bold text-[#C6E0FF] mt-36">
+            <h2 id="fitness-form" className="text-5xl font-bold text-black mt-36">
               Track Your Fitness
             </h2>
-            <p className="text-lg text-[#C6E0FF]/80">
+            <p className="text-lg text-black/80">
               Monitor your workout and activity metrics for better health
             </p>
           </div>
@@ -309,24 +309,24 @@ function FitnessTracker() {
                 <div className="space-y-4">
                   {/* Age Input */}
                   <div>
-                    <label className="block text-white text-sm font-medium mb-2">Age</label>
+                    <label className="block text-black text-sm font-medium mb-2">Age</label>
                     <input
                       type="number"
                       value={formData.age}
                       onChange={(e) => setFormData({...formData, age: e.target.value})}
-                      className="w-full bg-[#D44C2E]/10 border border-[#F7E987]/30 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-[#F7E987] focus:border-transparent transition-all"
+                    className="w-full bg-[#D44C2E]/10 border border-[#F7E987]/30 rounded-xl px-4 py-3 text-black focus:ring-2 focus:ring-[#F7E987] focus:border-transparent transition-all"
                     />
                   </div>
                   {/* Gender Buttons */}
                   <div>
-                    <label className="block text-white text-sm font-medium mb-3">Gender</label>
+                    <label className="block text-black text-sm font-medium mb-3">Gender</label>
                     <div className="grid grid-cols-2 gap-3">
                       <button
                         type="button"
                         onClick={() => setFormData({...formData, gender: 'Male'})}
                         className={`px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 border-2 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent ${
                           formData.gender === 'Male'
-                            ? 'bg-orange-500 text-white border-orange-500 shadow-lg'
+                            ? 'bg-orange-500 text-black border-orange-500 shadow-lg'
                             : 'bg-white text-orange-500 border-orange-400 hover:bg-orange-100'
                         }`}
                       >
@@ -337,7 +337,7 @@ function FitnessTracker() {
                         onClick={() => setFormData({...formData, gender: 'Female'})}
                         className={`px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 border-2 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent ${
                           formData.gender === 'Female'
-                            ? 'bg-orange-500 text-white border-orange-500 shadow-lg'
+                            ? 'bg-orange-500 text-black border-orange-500 shadow-lg'
                             : 'bg-white text-orange-500 border-orange-400 hover:bg-orange-100'
                         }`}
                       >
@@ -349,39 +349,39 @@ function FitnessTracker() {
               </div>
               {/* Body Metrics Section */}
               <div className="space-y-6">
-                <h3 className="text-2xl font-semibold text-white">Body Metrics</h3>
+                <h3 className="text-2xl font-semibold text-black">Body Metrics</h3>
                 <div className="space-y-4">
                   {/* Weight */}
                   <div>
-                    <label className="block text-white text-sm font-medium mb-2">Weight (kg)</label>
+                    <label className="block text-black text-sm font-medium mb-2">Weight (kg)</label>
                     <input
                       type="number"
                       step="0.1"
                       value={formData.weight}
                       onChange={(e) => setFormData({...formData, weight: e.target.value})}
-                      className="w-full bg-[#D44C2E]/10 border border-[#F7E987]/30 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-[#F7E987] focus:border-transparent transition-all"
+                    className="w-full bg-[#D44C2E]/10 border border-[#F7E987]/30 rounded-xl px-4 py-3 text-black focus:ring-2 focus:ring-[#F7E987] focus:border-transparent transition-all"
                     />
                   </div>
                   {/* Height */}
                   <div>
-                    <label className="block text-white text-sm font-medium mb-2">Height (cm)</label>
+                    <label className="block text-black text-sm font-medium mb-2">Height (cm)</label>
                     <input
                       type="number"
                       value={formData.height}
                       onChange={(e) => setFormData({...formData, height: e.target.value})}
-                      className="w-full bg-[#D44C2E]/10 border border-[#F7E987]/30 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-[#F7E987] focus:border-transparent transition-all"
+                    className="w-full bg-[#D44C2E]/10 border border-[#F7E987]/30 rounded-xl px-4 py-3 text-black focus:ring-2 focus:ring-[#F7E987] focus:border-transparent transition-all"
                     />
                   </div>
                 </div>
               </div>
               {/* Activity Metrics Section */}
               <div className="space-y-6 md:col-span-2">
-                <h3 className="text-2xl font-semibold text-center text-white">Weight Class</h3>
+                <h3 className="text-2xl font-semibold text-center text-black">Weight Class</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-4">
                     {/* Weight Class */}
                     <div>
-                      <label className="block text-white text-sm font-medium mb-2">Weight Class</label>
+                      <label className="block text-black text-sm font-medium mb-2">Weight Class</label>
                       <div className="space-y-3">
                         <div className="grid grid-cols-3 gap-3">
                           {['Severe Thinness', 'Moderate Thinness', 'Mild Thinness'].map((bmi_class) => (
@@ -391,7 +391,7 @@ function FitnessTracker() {
                               onClick={() => setFormData({...formData, bmi_class})}
                               className={`px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 border-2 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent ${
                                 formData.bmi_class === bmi_class
-                                  ? 'bg-orange-500 text-white border-orange-500 shadow-lg'
+                                  ? 'bg-orange-500 text-black border-orange-500 shadow-lg'
                                   : 'bg-white text-orange-500 border-orange-400 hover:bg-orange-100'
                               }`}
                             >
@@ -405,7 +405,7 @@ function FitnessTracker() {
                             onClick={() => setFormData({...formData, bmi_class: 'Normal'})}
                             className={`px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 border-2 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent ${
                               formData.bmi_class === 'Normal'
-                                ? 'bg-orange-500 text-white border-orange-500 shadow-lg'
+                                ? 'bg-orange-500 text-black border-orange-500 shadow-lg'
                                 : 'bg-white text-orange-500 border-orange-400 hover:bg-orange-100'
                             }`}
                           >
@@ -420,7 +420,7 @@ function FitnessTracker() {
                               onClick={() => setFormData({...formData, bmi_class})}
                               className={`px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 border-2 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent ${
                                 formData.bmi_class === bmi_class
-                                  ? 'bg-orange-500 text-white border-orange-500 shadow-lg'
+                                  ? 'bg-orange-500 text-black border-orange-500 shadow-lg'
                                   : 'bg-white text-orange-500 border-orange-400 hover:bg-orange-100'
                               }`}
                             >
@@ -432,54 +432,54 @@ function FitnessTracker() {
                     </div>
                     {/* Workout Duration */}
                     <div className="mt-11.5">
-                      <label className="block text-white text-sm font-medium mb-2">Workout Duration (minutes)</label>
+                    <label className="block text-black text-sm font-medium mb-2">Workout Duration (minutes)</label>
                       <input
                         type="number"
                         value={formData.workoutDuration}
                         onChange={(e) => setFormData({...formData, workoutDuration: e.target.value})}
-                        className="w-full bg-[#D44C2E]/10 border border-[#F7E987]/30 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-[#F7E987] focus:border-transparent transition-all"
+                    className="w-full bg-[#D44C2E]/10 border border-[#F7E987]/30 rounded-xl px-4 py-3 text-black focus:ring-2 focus:ring-[#F7E987] focus:border-transparent transition-all"
                       />
                     </div>
                   </div>
                   <div className="space-y-4">
                     {/* BMI */}
                     <div>
-                      <label className="block text-white text-sm font-medium mb-2">Body Mass Index</label>
+                    <label className="block text-black text-sm font-medium mb-2">Body Mass Index</label>
                       <input
                         type="number"
                         value={formData.bmi}
                         onChange={(e) => setFormData({...formData, bmi: e.target.value})}
-                        className="w-full bg-[#D44C2E]/10 border border-[#F7E987]/30 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-[#F7E987] focus:border-transparent transition-all"
+                    className="w-full bg-[#D44C2E]/10 border border-[#F7E987]/30 rounded-xl px-4 py-3 text-black focus:ring-2 focus:ring-[#F7E987] focus:border-transparent transition-all"
                       />
                     </div>
                     {/* Calories Burned */}
                     <div>
-                      <label className="block text-white text-sm font-medium mb-2">Calories Burned</label>
+                    <label className="block text-black text-sm font-medium mb-2">Calories Burned</label>
                       <input
                         type="number"
                         value={formData.caloriesBurned}
                         onChange={(e) => setFormData({...formData, caloriesBurned: e.target.value})}
-                        className="w-full bg-[#D44C2E]/10 border border-[#F7E987]/30 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-[#F7E987] focus:border-transparent transition-all"
+                    className="w-full bg-[#D44C2E]/10 border border-[#F7E987]/30 rounded-xl px-4 py-3 text-black focus:ring-2 focus:ring-[#F7E987] focus:border-transparent transition-all"
                       />
                     </div>
                     {/* Steps */}
                     <div>
-                      <label className="block text-white text-sm font-medium mb-2">Steps</label>
+                    <label className="block text-black text-sm font-medium mb-2">Steps</label>
                       <input
                         type="number"
                         value={formData.steps}
                         onChange={(e) => setFormData({...formData, steps: e.target.value})}
-                        className="w-full bg-[#D44C2E]/10 border border-[#F7E987]/30 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-[#F7E987] focus:border-transparent transition-all"
+                    className="w-full bg-[#D44C2E]/10 border border-[#F7E987]/30 rounded-xl px-4 py-3 text-black focus:ring-2 focus:ring-[#F7E987] focus:border-transparent transition-all"
                       />
                     </div>
                     {/* Heart Rate */}
                     <div>
-                      <label className="block text-white text-sm font-medium mb-2">Average Heart Rate (bpm)</label>
+                    <label className="block text-black text-sm font-medium mb-2">Average Heart Rate (bpm)</label>
                       <input
                         type="number"
                         value={formData.heartRate}
                         onChange={(e) => setFormData({...formData, heartRate: e.target.value})}
-                        className="w-full bg-[#D44C2E]/10 border border-[#F7E987]/30 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-[#F7E987] focus:border-transparent transition-all"
+                    className="w-full bg-[#D44C2E]/10 border border-[#F7E987]/30 rounded-xl px-4 py-3 text-black focus:ring-2 focus:ring-[#F7E987] focus:border-transparent transition-all"
                       />
                     </div>
                   </div>
@@ -492,7 +492,7 @@ function FitnessTracker() {
                 e.preventDefault();
                 fetchFitness();
               }}
-              className="w-full mt-10 bg-orange-500 hover:bg-orange-400 text-white font-medium py-4 px-8 rounded-xl transition-all duration-200 shadow-lg"
+              className="w-full mt-10 bg-orange-500 hover:bg-orange-400 text-black font-medium py-4 px-8 rounded-xl transition-all duration-200 shadow-lg"
             >
               Track My Fitness
             </button>
@@ -503,18 +503,18 @@ function FitnessTracker() {
       {showDashboard && (
         <div className="py-16 w-full bg-gradient-to-b from-yellow-300 to-orange-400">
           <div id="dashboard" className="max-w-7xl mx-auto px-4">
-            <h2 className="text-4xl font-bold text-white mb-8 text-center">Your Fitness Analytics</h2>
+            <h2 className="text-4xl font-bold text-black mb-8 text-center">Your Fitness Analytics</h2>
             
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
               {/* Left Column - Main Stats */}
               <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Activity Score */}
                 <div className="bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-[#86C1FF]/30">
-                  <h3 className="text-lg font-semibold text-white mb-4">Activity Score</h3>
+                  <h3 className="text-lg font-semibold text-black mb-4">Activity Score</h3>
                   <div className="relative pt-1">
                     <div className="flex items-center justify-between">
                       <div>
-                        <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-white bg-[#86C1FF]/20">
+                        <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-black bg-[#86C1FF]/20">
                           {fitnessScore}%
                         </span>
                       </div>
@@ -522,23 +522,23 @@ function FitnessTracker() {
                     <div className="overflow-hidden h-2 mb-4 text-xs flex rounded bg-[#86C1FF]/20 mt-3">
                       <div
                         style={{ width: `${fitnessScore}%` }}
-                        className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-[#86C1FF]"
+                        className="shadow-none flex flex-col text-center whitespace-nowrap text-black justify-center bg-[#86C1FF]"
                       ></div>
                     </div>
                   </div>
-                  <p className="text-white/60 text-sm">
+                  <p className="text-black/60 text-sm">
                     Your fitness score indicates {fitnessScore < 50 ? 'room for improvement' : 'good progress'}
                   </p>
                 </div>
 
                 {/* Workout Stats */}
                 <div className="bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-[#86C1FF]/30">
-                  <h3 className="text-lg font-semibold text-white mb-4">Today's Activity</h3>
+                  <h3 className="text-lg font-semibold text-black mb-4">Today's Activity</h3>
                   <div className="space-y-4">
                     <div>
                       <div className="flex justify-between items-center mb-1">
-                        <span className="text-white/80 text-sm">Steps</span>
-                        <span className="text-white text-sm font-medium">{formData.steps || '0'}</span>
+                        <span className="text-black/80 text-sm">Steps</span>
+                        <span className="text-black text-sm font-medium">{formData.steps || '0'}</span>
                       </div>
                       <div className="overflow-hidden h-1.5 rounded bg-[#86C1FF]/20">
                         <div className="bg-[#86C1FF] h-full" style={{ width: '75%' }}></div>
@@ -546,8 +546,8 @@ function FitnessTracker() {
                     </div>
                     <div>
                       <div className="flex justify-between items-center mb-1">
-                        <span className="text-white/80 text-sm">Calories</span>
-                        <span className="text-white text-sm font-medium">{formData.caloriesBurned || '0'} kcal</span>
+                        <span className="text-black/80 text-sm">Calories</span>
+                        <span className="text-black text-sm font-medium">{formData.caloriesBurned || '0'} kcal</span>
                       </div>
                       <div className="overflow-hidden h-1.5 rounded bg-[#86C1FF]/20">
                         <div className="bg-[#86C1FF] h-full" style={{ width: '60%' }}></div>
@@ -555,8 +555,8 @@ function FitnessTracker() {
                     </div>
                     <div>
                       <div className="flex justify-between items-center mb-1">
-                        <span className="text-white/80 text-sm">Heart Rate</span>
-                        <span className="text-white text-sm font-medium">{formData.heartRate || '0'} bpm</span>
+                        <span className="text-black/80 text-sm">Heart Rate</span>
+                        <span className="text-black text-sm font-medium">{formData.heartRate || '0'} bpm</span>
                       </div>
                       <div className="overflow-hidden h-1.5 rounded bg-[#F59E0B]/20">
                         <div className="bg-[#F59E0B] h-full" style={{ width: '80%' }}></div>
@@ -567,28 +567,28 @@ function FitnessTracker() {
 
                 {/* Activity Level */}
                 <div className="bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-[#86C1FF]/30">
-                  <h3 className="text-lg font-semibold text-white mb-4">Activity Level</h3>
+                  <h3 className="text-lg font-semibold text-black mb-4">Activity Level</h3>
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-2xl font-bold text-[#86C1FF]">{Math.round(activityLevel)}%</span>
-                    <span className="text-white/60">of daily goal</span>
+                    <span className="text-black/60">of daily goal</span>
                   </div>
                   <div className="overflow-hidden h-2 mb-4 text-xs flex rounded bg-[#86C1FF]/20">
                     <div
                       style={{ width: `${activityLevel}%` }}
-                      className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-[#86C1FF] transition-all duration-500"
+                      className="shadow-none flex flex-col text-center whitespace-nowrap text-black justify-center bg-[#86C1FF] transition-all duration-500"
                     ></div>
                   </div>
                 </div>
 
                 {/* Workout Intensity */}
                 <div className="bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-[#86C1FF]/30">
-                  <h3 className="text-lg font-semibold text-white mb-4">Workout Intensity</h3>
+                  <h3 className="text-lg font-semibold text-black mb-4">Workout Intensity</h3>
                   <div className="space-y-3">
                     <div className="flex justify-between items-center">
-                      <span className="text-white/80">{formData.workoutIntensity}</span>
+                      <span className="text-black/80">{formData.workoutIntensity}</span>
                       <span className="text-[#86C1FF] font-medium">{formData.workoutDuration} min</span>
                     </div>
-                    <p className="text-white/60 text-sm">
+                    <p className="text-black/60 text-sm">
                       {formData.workoutIntensity === 'Moderate' 
                         ? 'Good pace! Consider increasing intensity for better results.' 
                         : 'Keep up the great work!'}
@@ -600,15 +600,15 @@ function FitnessTracker() {
               {/* Right Column - Tips and Insights */}
               <div className="space-y-6">
                 <div className="bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-[#86C1FF]/30">
-                  <h3 className="text-lg font-semibold text-white mb-4">Fitness Insights</h3>
+                  <h3 className="text-lg font-semibold text-black mb-4">Fitness Insights</h3>
                   <div className="space-y-4">
                     <div className="flex items-start">
                       <div className="w-8 h-8 rounded-full bg-green-400/20 flex items-center justify-center mr-3">
                         <span className="text-green-400">↑</span>
                       </div>
                       <div>
-                        <h4 className="text-white font-medium">Progress Update</h4>
-                        <p className="text-white/60 text-sm">Activity level increased by 15% this week</p>
+                        <h4 className="text-black font-medium">Progress Update</h4>
+                        <p className="text-black/60 text-sm">Activity level increased by 15% this week</p>
                       </div>
                     </div>
                     <div className="flex items-start">
@@ -616,8 +616,8 @@ function FitnessTracker() {
                         <span className="text-[#86C1FF]">i</span>
                       </div>
                       <div>
-                        <h4 className="text-white font-medium">Personalized Tip</h4>
-                        <p className="text-white/60 text-sm">
+                        <h4 className="text-black font-medium">Personalized Tip</h4>
+                        <p className="text-black/60 text-sm">
                           Based on your heart rate data, consider adding more cardio exercises
                         </p>
                       </div>
@@ -628,8 +628,8 @@ function FitnessTracker() {
                           <span className="text-purple-400">★</span>
                         </div>
                         <div>
-                          <h4 className="text-white font-medium">Weekly Goal</h4>
-                          <p className="text-white/60 text-sm">
+                          <h4 className="text-black font-medium">Weekly Goal</h4>
+                          <p className="text-black/60 text-sm">
                             You're on track to reach your weekly activity target
                           </p>
                         </div>
