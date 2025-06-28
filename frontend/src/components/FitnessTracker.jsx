@@ -213,10 +213,10 @@ function FitnessTracker() {
       <main className="mx-auto py-16 w-full bg-gradient-to-b from-orange-400 to-yellow-300">
         <div className="max-w-4xl mx-auto space-y-12">
           <div className="text-center space-y-4">
-            <h2 className="text-5xl font-bold text-black">
+            <h2 className="text-5xl font-bold text-white">
               Calculate your BMI
             </h2>
-            <p className="text-lg text-black/80">
+            <p className="text-lg text-white">
               Discover your body mass index and take the first step towards a healthier you
             </p>
             <form className="bg-white/5 backdrop-blur-md p-8 rounded-3xl border border-[#FFD580]/20 shadow-xl">
@@ -303,10 +303,10 @@ function FitnessTracker() {
                 </div>
               )}
             </form>
-            <h2 id="fitness-form" className="text-5xl font-bold text-black mt-36">
+            <h2 id="fitness-form" className="text-5xl font-bold text-white mt-36">
               Track Your Fitness
             </h2>
-            <p className="text-lg text-black/80">
+            <p className="text-lg text-white">
               Monitor your workout and activity metrics for better health
             </p>
           </div>
@@ -546,24 +546,9 @@ function FitnessTracker() {
                         <span className="text-black text-sm font-medium">{formData.heartRate || '0'} bpm</span>
                       </div>
                       <div className="overflow-hidden h-1.5 rounded bg-[#F59E0B]/20">
-                        <div className="bg-[#F59E0B] h-full" style={{ width: '80%' }}></div>
+                        <div className="bg-[#f50b0b] h-full" style={{ width: '80%' }}></div>
                       </div>
                     </div>
-                  </div>
-                </div>
-
-                {/* Activity Level */}
-                <div className="bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-[#86C1FF]/30">
-                  <h3 className="text-lg font-semibold text-black mb-4">Activity Level</h3>
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-2xl font-bold text-[#86C1FF]">{Math.round(activityLevel)}%</span>
-                    <span className="text-black/60">of daily goal</span>
-                  </div>
-                  <div className="overflow-hidden h-2 mb-4 text-xs flex rounded bg-[#86C1FF]/20">
-                    <div
-                      style={{ width: `${activityLevel}%` }}
-                      className="shadow-none flex flex-col text-center whitespace-nowrap text-black justify-center bg-[#86C1FF] transition-all duration-500"
-                    ></div>
                   </div>
                 </div>
 
