@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import ClickSpark from "./ClickSpark";
 import { Link } from "react-router-dom";
 
 function FitnessTracker() {
@@ -123,32 +124,59 @@ function FitnessTracker() {
     <>
       <div className="min-h-screen w-full flex flex-col bg-gradient-to-b from-orange-400 to-yellow-300">
         <div className="p-6">
-          <Link
-            to="/"
-            className="text-3xl font-bold text-black tracking-wide hover:text-orange-300 transition-colors"
-          >
-            <span className="text-3xl md:text-4xl font-extrabold text-white drop-shadow-lg">
-              SomniFit
-            </span>
-          </Link>
+          <ClickSpark sparkColor="#fff" sparkSize={10} sparkRadius={15} sparkCount={8} duration={400}>
+            <Link
+              to="/"
+              className="text-3xl font-bold text-black tracking-wide hover:text-orange-300 transition-colors"
+            >
+              <span className="text-3xl md:text-4xl font-extrabold text-white drop-shadow-lg">
+                SomniFit
+              </span>
+            </Link>
+          </ClickSpark>
         </div>
         <div className="flex-1 flex flex-col items-center justify-center px-4">
           {/* StarField removed */}
-          <h1 className="text-6xl md:text-8xl font-extrabold text-white text-center mb-8 tracking-tight">
-            Enhance your fitness
-          </h1>
-          <p className="text-xl md:text-2xl text-white text-center max-w-2xl">
-            Track, analyze, and improve your fitness with our AI-powered insights and personalized recommendations.
-          </p>
-          <button 
-            onClick={scrollToForm}
-            className="mt-12 px-8 py-4 bg-orange-500 hover:bg-orange-400 text-white font-semibold rounded-lg text-lg transition-colors"
-          >
-            Get Started
-          </button>
+          {/* ClickSpark everywhere except where the text is */}
+          <div className="relative w-full flex flex-col items-center justify-center min-h-[60vh]">
+            {/* Overlay for click spark, covers all except text block, and adds above/below Enhance and Get Started */}
+            <ClickSpark sparkColor="#fff" sparkSize={10} sparkRadius={15} sparkCount={8} duration={400}>
+              <div className="absolute inset-0 z-0 pointer-events-none">
+                {/* Top area above all text */}
+                <div className="w-full absolute left-0 top-0 h-[60px] pointer-events-auto" style={{cursor: 'pointer'}} />
+                {/* Area above Enhance */}
+                <div className="w-full absolute left-0 top-[60px] h-[40px] pointer-events-auto" style={{cursor: 'pointer'}} />
+                {/* Area below Enhance, above statement */}
+                <div className="w-full absolute left-0 top-[160px] h-[30px] pointer-events-auto" style={{cursor: 'pointer'}} />
+                {/* Area below statement, above Get Started */}
+                <div className="w-full absolute left-0 top-[220px] h-[40px] pointer-events-auto" style={{cursor: 'pointer'}} />
+                {/* Area below Get Started */}
+                <div className="w-full absolute left-0 top-[320px] h-[60px] pointer-events-auto" style={{cursor: 'pointer'}} />
+                {/* Left and right sides of text block */}
+                <div className="absolute top-[60px] bottom-[120px] left-0 w-[10%] pointer-events-auto" style={{cursor: 'pointer'}} />
+                <div className="absolute top-[60px] bottom-[120px] right-0 w-[10%] pointer-events-auto" style={{cursor: 'pointer'}} />
+              </div>
+            </ClickSpark>
+            {/* Text block stays above the overlay */}
+            <div className="relative z-10 flex flex-col items-center justify-center w-full">
+              <h1 className="text-6xl md:text-8xl font-extrabold text-white text-center mb-8 tracking-tight">
+                Enhance your fitness
+              </h1>
+              <p className="text-xl md:text-2xl text-white text-center max-w-2xl">
+                Track, analyze, and improve your fitness with our AI-powered insights and personalized recommendations.
+              </p>
+              <button
+                onClick={scrollToForm}
+                className="mt-12 px-8 py-4 bg-orange-500 hover:bg-orange-400 text-white font-semibold rounded-lg text-lg transition-colors"
+              >
+                Get Started
+              </button>
+            </div>
+          </div>
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full bg-gradient-to-b from-yellow-300 to-orange-400 px-6 md:px-20 py-16">
+      <ClickSpark sparkColor="#fff" sparkSize={10} sparkRadius={15} sparkCount={8} duration={400}>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full bg-gradient-to-b from-yellow-300 to-orange-400 px-6 md:px-20 py-16">
         {/* Card 1 */}
         <div className="group relative transform hover:-translate-y-2 transition-all duration-300 h-full">
           <div className="absolute -inset-0.5 bg-gradient-to-r from-orange-400 to-yellow-300 rounded-2xl opacity-30 group-hover:opacity-50 blur transition duration-300"></div>
@@ -209,8 +237,10 @@ function FitnessTracker() {
             </div>
           </div>
         </div>
-      </div>
-      <main className="mx-auto py-16 w-full bg-gradient-to-b from-orange-400 to-yellow-300">
+        </div>
+      </ClickSpark>
+      <ClickSpark sparkColor="#fff" sparkSize={10} sparkRadius={15} sparkCount={8} duration={400}>
+        <main className="mx-auto py-16 w-full bg-gradient-to-b from-orange-400 to-yellow-300">
         <div className="max-w-4xl mx-auto space-y-12">
           <div className="text-center space-y-4">
             <h2 className="text-5xl font-bold text-white">
@@ -245,13 +275,15 @@ function FitnessTracker() {
               </div>
               
               <div className="flex justify-center mb-6">
-                <button
-                  type="button"
-                  onClick={handleBmiCalculate}
-                  className="bg-orange-500 text-black font-semibold py-4 px-8 rounded-xl hover:bg-orange-600 transition-all duration-200 shadow-lg"
-                >
-                  Calculate BMI
-                </button>
+                <ClickSpark sparkColor="#fff" sparkSize={10} sparkRadius={15} sparkCount={8} duration={400}>
+                  <button
+                    type="button"
+                    onClick={handleBmiCalculate}
+                    className="bg-orange-500 text-black font-semibold py-4 px-8 rounded-xl hover:bg-orange-600 transition-all duration-200 shadow-lg"
+                  >
+                    Calculate BMI
+                  </button>
+                </ClickSpark>
               </div>
 
               {bmiResult && (
@@ -496,23 +528,27 @@ function FitnessTracker() {
                 </div>
               </div>
             </div>
-            <button
-              type="button"
-              onClick={(e) => {
-                e.preventDefault();
-                fetchFitness();
-              }}
-              className="w-full mt-10 bg-orange-500 hover:bg-orange-400 text-black font-medium py-4 px-8 rounded-xl transition-all duration-200 shadow-lg"
-            >
-              Track My Fitness
-            </button>
+            <ClickSpark sparkColor="#fff" sparkSize={10} sparkRadius={15} sparkCount={8} duration={400}>
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.preventDefault();
+                  fetchFitness();
+                }}
+                className="w-full mt-10 bg-orange-500 hover:bg-orange-400 text-black font-medium py-4 px-8 rounded-xl transition-all duration-200 shadow-lg"
+              >
+                Track My Fitness
+              </button>
+            </ClickSpark>
           </form>
         </div>
-      </main>
+        </main>
+      </ClickSpark>
       {/* Fitness Dashboard */}
       {showDashboard && (
-        <div className="py-16 w-full bg-gradient-to-b from-yellow-300 to-orange-400">
-          <div id="dashboard" className="max-w-7xl mx-auto px-4">
+        <ClickSpark sparkColor="#fff" sparkSize={10} sparkRadius={15} sparkCount={8} duration={400}>
+          <div className="py-16 w-full bg-gradient-to-b from-yellow-300 to-orange-400">
+            <div id="dashboard" className="max-w-7xl mx-auto px-4">
             <h2 className="text-4xl font-bold text-black mb-8 text-center">Your Fitness Analytics</h2>
             
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
@@ -624,8 +660,9 @@ function FitnessTracker() {
                 </p>
               </div>
             </div>
+            </div>
           </div>
-        </div>
+        </ClickSpark>
       )}
     </>
   );
