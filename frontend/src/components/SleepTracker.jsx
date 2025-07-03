@@ -26,13 +26,15 @@ function SleepTracker() {
   //   return () => clearInterval(interval);
   // }, []);
 
+  const API_URL = 'https://somnifit-server.onrender.com' || 'http:localhost:5000'
+
   const fetchSleep = async () => {
     try {
       setSleepEfficiency(0)
       const bedTimeHours = formData.bedTime ? parseInt(formData.bedTime.split(':')[0]) : 0;
       const wakeupTimeHours = formData.wakeupTime ? parseInt(formData.wakeupTime.split(':')[0]) : 0;
       
-      const res = await fetch('http://localhost:5000/sleep_predictor', {
+      const res = await fetch(`${API_URL}/sleep_predictor`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

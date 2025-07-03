@@ -31,11 +31,13 @@ function FitnessTracker() {
     return () => clearInterval(interval);
   }, []);
 
+  const API_URL = 'https://somnifit-server.onrender.com' || 'http:localhost:5000'
+
   const fetchFitness = async () => {
     try {
       setFitnessScore(0);
 
-      const res = await fetch("http://localhost:5000/activity_predictor", {
+      const res = await fetch(`${API_URL}/activity_predictor`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

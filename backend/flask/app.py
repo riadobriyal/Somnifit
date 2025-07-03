@@ -4,7 +4,7 @@ import pickle
 import numpy as np
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, origins=['https://somnifit-client.onrender.com', 'http://localhost:5173'])
 
 sleep_transformer = pickle.load(open('models/column_transformer_sleep.pkl','rb'))
 lin_model = pickle.load(open('models/lin_reg_sleep.pkl','rb'))
