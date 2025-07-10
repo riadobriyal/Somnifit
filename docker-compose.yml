@@ -2,6 +2,7 @@ services:
   server:
     build: ./backend
     image: riadobriyal26/somnifit:server
+    platform: linux/amd64
     container_name: somnifit-server
     ports:
       - "5000:5000"
@@ -9,6 +10,7 @@ services:
   client:
     build: ./frontend
     image: riadobriyal26/somnifit:client
+    platform: linux/amd64
     container_name: somnifit-client
     ports:
       - "5173:5173"
