@@ -1,14 +1,14 @@
 services:
   server:
     build: ./backend
-    image: aryan3rox/somnifit:server
+    image: riadobriyal26/somnifit:server
     container_name: somnifit-server
     ports:
       - "5000:5000"
   
   client:
     build: ./frontend
-    image: aryan3rox/somnifit:client
+    image: riadobriyal26/somnifit:client
     container_name: somnifit-client
     ports:
       - "5173:5173"

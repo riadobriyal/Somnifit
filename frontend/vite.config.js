@@ -9,7 +9,7 @@ export default defineConfig({
     host: '0.0.0.0',
     port: 5173,
     allowedHosts: [
-      'somnifit-client.onrender.com',
+      'somnifit-client-5bud.onrender.com',
       'localhost',
       '127.0.0.1'
     ]
@@ -18,7 +18,7 @@ export default defineConfig({
     host: '0.0.0.0',
     port: 5173,
     allowedHosts: [
-      'somnifit-client.onrender.com',
+      'somnifit-client-5bud.onrender.com',
       'localhost',
       '127.0.0.1'
     ]

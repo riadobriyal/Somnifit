@@ -31,7 +31,7 @@ function FitnessTracker() {
     return () => clearInterval(interval);
   }, []);
 
-  const API_URL = 'https://somnifit-server.onrender.com' || 'http:localhost:5000'
+  const API_URL = 'https://somnifit-server-3z05.onrender.com' || 'http:localhost:5000'
 
   const fetchFitness = async () => {
     try {
